@@ -1,0 +1,29 @@
+{
+  "name": "new bottle",
+  "version": "0.0.1",
+  "dependencies": {
+    "angular": "1.3.6",
+    "angular-resource": "1.3.6",
+    "angular-cookies": "1.3.6",
+    "angular-mocks": "1.3.6",
+    "angular-route": "1.3.6",
+    "angular-sanitize": "1.3.6",
+    "angular-animate": "1.3.6",
+    "angular-loading-bar": "#master",
+    "angular-ui-router": "#master",
+    "skrollr": "~0.6.26",
+    "fontawesome": "~4.1.0",
+    "ng-file-upload": "~1.6.5",
+    "angular-touch": "1.3.6",
+    "angular-scroll": "~0.5.8",
+    "jquery": "~2.1.1",
+    "angular-material": "0.6.1",
+    "bootstrap-sass": "~3.0.2",
+    "skidding--dragdealer": "~0.9.8",
+    "idangerous-swiper": "~2.7.0",
+    "animate.css": "~3.2.0",
+    "angular-ui-grid": "~3.0.0-rc.16",
+    "ngQuickDate": "~1.3.3",
+    "rome": "~1.2.1"
+  }
+}
