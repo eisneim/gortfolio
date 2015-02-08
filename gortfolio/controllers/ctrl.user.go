@@ -1,15 +1,11 @@
 package controllers
 
 import (
+	"fmt"
+	"github.com/julienschmidt/httprouter"
 	"net/http"
 )
 
-var (
-	User = map[string]JSON{
-		"Login": UserLogin,
-	}
-)
-
-func UserLogin(w http.ResponseWriter, r *http.Request) (interface{}, *HandlerError) {
-	return `{"msg":"this should be a login page"}`, nil
+func UserLogin(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+	fmt.Fprint(w, `{"msg":"this should be a login page"}`)
 }
