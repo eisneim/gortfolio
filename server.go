@@ -13,14 +13,15 @@
 package main
 
 import (
-	"encoding/json"
 	"flag"
-	"fmt"
-	"io/ioutil"
-	"log"
-	"net/http"
-	"strconv"
-
-	// router
-	"github.com/gorilla/mux"
+	"github.com/eisneim/gortfolio/gortfolio"
 )
+
+func main() {
+	// command line flags, flag Prase() returnd with pointers
+	port := flag.Int("port", 8888, "port to serve on")
+	dir := flag.String("dir", "public/", "directory of static files ")
+	flag.Parse()
+
+	gortfolio.Serve(*port, *dir)
+}
