@@ -15,6 +15,8 @@ func init() {
 	// ----------- user apis -----------
 	Router.GET("/v1/login", controllers.UserLogin)
 
+	Router.GET("/test", controllers.Test)
+
 	// ----------- portfolio api -------
 
 }

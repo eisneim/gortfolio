@@ -3,10 +3,12 @@ package gortfolio
 import (
 	"fmt"
 	// "io/ioutil"
+	"github.com/justinas/alice"
 	"html/template"
 	"log"
 	"net/http"
 	// "strconv"
+
 	// router
 	"github.com/julienschmidt/httprouter"
 	// "github.com/eisneim/gortfolio/gortfolio/controllers"
@@ -23,6 +25,17 @@ func init() {
 	)
 }
 
+func LoggingMiddleware(h http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		log.Println("request started")
+		// h(w, r)
+		// log.Println("request finished")
+		h.ServeHTTP(w, r)
+		w.Write([]byte("___md"))
+		log.Println("request finished")
+	})
+}
+
 func Serve(port int, dir string) {
 
 	// Router.Handle("/", http.RedirectHandler("/static/", 302))
@@ -33,7 +46,9 @@ func Serve(port int, dir string) {
 
 	log.Printf("Running on port %d\n", port)
 
-	err := http.ListenAndServe(fmt.Sprintf("127.0.0.1:%d", port), Router)
+	middlewareChain := alice.New(LoggingMiddleware).Then(Router)
+
+	err := http.ListenAndServe(fmt.Sprintf("127.0.0.1:%d", port), middlewareChain)
 	fmt.Println(err.Error())
 }
 
