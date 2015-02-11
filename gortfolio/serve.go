@@ -31,6 +31,7 @@ func LoggingMiddleware(h http.Handler) http.Handler {
 		// h(w, r)
 		// log.Println("request finished")
 		h.ServeHTTP(w, r)
+		// append some thing here;
 		w.Write([]byte("___md"))
 		log.Println("request finished")
 	})
@@ -46,7 +47,7 @@ func Serve(port int, dir string) {
 
 	log.Printf("Running on port %d\n", port)
 
-	middlewareChain := alice.New(LoggingMiddleware).Then(Router)
+	middlewareChain := alice.New(JSON_md).Then(Router)
 
 	err := http.ListenAndServe(fmt.Sprintf("127.0.0.1:%d", port), middlewareChain)
 	fmt.Println(err.Error())
