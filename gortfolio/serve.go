@@ -47,7 +47,7 @@ func Serve(port int, dir string) {
 
 	log.Printf("Running on port %d\n", port)
 
-	middlewareChain := alice.New(JSON_md).Then(Router)
+	middlewareChain := alice.New().Then(Router)
 
 	err := http.ListenAndServe(fmt.Sprintf("127.0.0.1:%d", port), middlewareChain)
 	fmt.Println(err.Error())

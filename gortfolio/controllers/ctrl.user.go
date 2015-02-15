@@ -20,7 +20,10 @@ func Test(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	var books = make([]book, 0)
 
 	books = append(books, book{"Ender's Game", "Orson Scott Card", 1})
+	books = append(books, book{"Code Complete", "Steve McConnell", 2})
+	books = append(books, book{"World War Z", "Max Brooks", 3})
 
-	fmt.Fprint(w, books)
-	// return books
+	// w.Write(books)
+	// fmt.Fprint(w, books)
+	R.JSON(w, http.StatusOK, books)
 }
