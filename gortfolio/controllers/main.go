@@ -1,11 +1,14 @@
 package controllers
 
 import (
-	"encoding/json"
-	"fmt"
+	// "encoding/json"
+	// "fmt"
 	"github.com/unrolled/render"
-	"log"
-	"net/http"
+	"gopkg.in/mgo.v2"
+	// "gopkg.in/mgo.v2/bson"
+	"github.com/julienschmidt/httprouter"
+	// "log"
+	// "net/http"
 )
 
 /**
@@ -32,38 +35,22 @@ var (
 	})
 )
 
-type HandlerError struct {
-	Error   error
-	Message string
-	Code    int
-}
+// func HandleFunc( router httprouter.Router ) {
+// 	return func( w http.ResponseWriter, r *http.Request, _ httprouter.Params ){
 
-type JSON func(w http.ResponseWriter, r *http.Request) (interface{}, *HandlerError)
+// 	}
+// }
 
-func (fn JSON) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-
-	response, err := fn(w, r)
-
+func main() {
+	SessionDB, err := mgo.Dial("localhost")
 	if err != nil {
-		log.Printf("ERROR: %v\n", err.Error)
-		http.Error(w, fmt.Sprintf(`{"error":"%s"}`, err.Message), err.Code)
-		return
+		panic(err)
 	}
-	if response == nil {
-		log.Printf("ERROR: response from method is nil\n")
-		http.Error(w, "Internal server error. check the logs.", http.StatusInternalServerError)
-		return
-	}
-	// turn respoonse into json
-	bytes, e := json.Marshal(response)
-	if e != nil {
-		http.Error(w, "Error harshalling JSON", http.StatusInternalServerError)
-		return
-	}
+	defer SessionDB.Close()
 
-	// send response and log it
-	w.Header().Set("Content-Type", "application/json")
-	w.Write(bytes)
-	log.Printf("%s %s %s %d", r.RemoteAddr, r.Method, r.URL, 200)
+	// Optional. Switch the SessionDB to a monotonic behavior.
+	SessionDB.SetMode(mgo.Monotonic, true)
 
+	DB := SessionDB.DB("gortfolio")
+	ColUser := DB.C("users")
 }

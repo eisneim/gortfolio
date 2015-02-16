@@ -1,0 +1,9 @@
+{
+	"host":"localhost",
+	"port":"8888",
+	"db":"gortfolio",
+	"github_auth_client_id":"__",
+	"github_auth_client_secret":"__",
+	"github_login_redirect":"__",
+	"github_login_success_redirect":"__"
+}
