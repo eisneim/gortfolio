@@ -28,6 +28,7 @@ func init() {
 func LoggingMiddleware(h http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		log.Println("request started")
+		w.Write([]byte("md___"))
 		// h(w, r)
 		// log.Println("request finished")
 		h.ServeHTTP(w, r)

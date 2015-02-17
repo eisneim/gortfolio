@@ -4,7 +4,7 @@ import (
 	// "fmt"
 	"github.com/julienschmidt/httprouter"
 	"gopkg.in/mgo.v2/bson"
-	"log"
+	// "log"
 	"net/http"
 	"time"
 )
@@ -25,10 +25,10 @@ func UserLogin(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	// }
 
 	result := Person{}
-	err = ColUser.Find(bson.M{"phone": "13472783207"}).One(&result)
-	if err != nil {
-		log.Fatal(err)
-	}
+	// err = ColUser.Find(bson.M{"phone": "13472783207"}).One(&result)
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
 
 	R.JSON(w, http.StatusOK, result)
 }

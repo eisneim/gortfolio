@@ -2,9 +2,9 @@ package gortfolio
 
 import (
 	"encoding/json"
-	"fmt"
-	"html/template"
-	"io/ioutil"
+	// "fmt"
+	// "html/template"
+	// "io/ioutil"
 	"log"
 	"os"
 	"runtime"
@@ -24,7 +24,7 @@ var Config ConfigStruct
 var goVersion = runtime.Version()
 
 func init() {
-	file, err := os.Open("../appConfig.json")
+	file, err := os.Open("./appConfig.json")
 	if err != nil {
 		log.Fatal("配置文件读取失败:", err.Error())
 	}

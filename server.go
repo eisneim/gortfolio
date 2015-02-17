@@ -19,7 +19,7 @@ import (
 
 func main() {
 	// command line flags, flag Prase() returnd with pointers
-	port := flag.Int("port", Config.Port, "port to serve on")
+	port := flag.Int("port", gortfolio.Config.Port, "port to serve on")
 	dir := flag.String("dir", "public/", "directory of static files ")
 	flag.Parse()
 
