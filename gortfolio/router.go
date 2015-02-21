@@ -25,6 +25,8 @@ func init() {
 		w.Write([]byte("这个是前置middleware _______"))
 		handler(w, r, p)
 	})
+
+	Router.GET("/insert", controllers.NewUser)
 	// ----------- portfolio api -------
 
 }

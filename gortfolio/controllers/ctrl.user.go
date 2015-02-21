@@ -4,7 +4,7 @@ import (
 	// "fmt"
 	"github.com/julienschmidt/httprouter"
 	"gopkg.in/mgo.v2/bson"
-	// "log"
+	"log"
 	"net/http"
 	"time"
 )
@@ -49,4 +49,27 @@ func Test(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	// w.Write(books)
 	// fmt.Fprint(w, books)
 	R.JSON(w, http.StatusOK, books)
+}
+
+func NewUser(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+
+	type User struct {
+		Id_      bson.ObjectId `bson:"_id"`
+		Username string        `bson:"username"`
+		// Salt            string `bson:"salt"`
+		// Hash            string `bson:"hash"`
+		// Email           string `bson:"email"`
+		// Avatar          string `bson:"avatar"`
+	}
+	err := ColUser.Insert(&User{bson.NewObjectId(), "Ale"},
+		&User{bson.NewObjectId(), "Eisneim"})
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	var users []User
+
+	ColUser.Find(nil).All(&users)
+
+	R.JSON(w, http.StatusOK, users)
 }
