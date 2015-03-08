@@ -1,53 +1,65 @@
 var gulp = require('gulp'),
-	connect = require('gulp-connect'),
 	open = require('gulp-open'),
 	browserify = require('gulp-browserify'),
 	concat = require('gulp-concat'),
-	port = process.env.port || 3031;
+	uglify = require('gulp-uglify'),
+	livereload = require('gulp-livereload');
 
+// for sass compile and live reload:
+var sass = require('gulp-sass'),
+    autoprefix = require('gulp-autoprefixer'),
+    minifyCSS = require('gulp-minify-css');
+
+var paths = {
+	html: 	'public/index.html',
+	img: 	'public/img/**/*',
+	scss: 	'public/scss/**/*.scss',
+	js:  	'public/app/**/*.js',
+}
+// ---------------------------------------
+gulp.task('scss', function() {
+    // console.log('-----build main.scss');
+  gulp.src('./public/scss/main.scss' )
+    .pipe(sass())
+    .pipe(autoprefix('last 2 versions'))
+    .pipe(minifyCSS())
+    .pipe(gulp.dest('./public/css'))
+});
+
+
+// ---------------------------------------
 gulp.task('browserify',function(){
-	gulp.src('./app/src/js/app.js')
+	gulp.src('./public/app/app.js')
 	.pipe(browserify({
 		transform: 'reactify'
 	}))
-	.pipe(gulp.dest('./build/'));
+	.pipe(gulp.dest('./public/build/'));
 })
 //launch browser in a port 
 gulp.task('open',function(){
 	var options  = {
 		url:'http://localhost:'+ port,
 	}
-	gulp.src('./app/index.html')
+	gulp.src('./public/index.html')
 	.pipe(open('',options));
 })
-// live reload server 
-gulp.task('connect',function(){
-	connect.server({
-		root:'app',
-		port: port,
-		livereload:true,
-	})
-})
-// live reload js 
-gulp.task('reload-js',function(){
-	gulp.src('./build/**/*.js')
-	.pipe(connect.reload() );
-})
-// live relaod html
-gulp.task('reload-html',function(){
-	gulp.src('./app/**/*.html')
-	.pipe(connect.reload() );
-})
+
 // watch files for live reload
 gulp.task('watch',function(){
-	gulp.watch('./build/*.js',['reload-js']);
-	gulp.watch('./app/**/*.html',['reload-html']);
-	gulp.watch('./app/src/js/**/*.js',['browserify']);
+	livereload.listen();
+	gulp.watch('./public/build/**/*.js').on('change', livereload.changed);
+	gulp.watch( paths.html ).on('change', livereload.changed);
+	gulp.watch('./public/css/**/*.css').on('change', livereload.changed);
+
+	gulp.watch( paths.js ,['browserify']);
+	gulp.watch( paths.scss ,['scss']);
 });
 
 gulp.task('default',['browserify']);
 
-gulp.task('serve',['browserify','connect','watch']);
+gulp.task('build',['browserify','scss']);
+
+gulp.task('serve',['browserify','watch']);
 
 
 
