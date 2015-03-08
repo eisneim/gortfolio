@@ -3,6 +3,7 @@ body,html{
   font-family: Lato,Helvetica Neue,"Hiragino Sans GB","Microsoft YaHei","微软雅黑","STHeiti","WenQuanYi Micro Hei",SimSun,sans-serif,Arial;
   width: 100%;
   height: 100%;
+  overflow: hidden;
 }
 h1,h2,h3,h4,h5,*{
   // really thin
@@ -68,7 +69,7 @@ a{
   margin-left:5px;
   margin-right:5px;
   text-decoration: none;
-  &:hover,&:focus{
+  &:hover,&:focus,&.active{
     outline: none;
     border:none;
     color: map-get($color-green,'500');
@@ -183,13 +184,19 @@ a{
 }
 
 // =---------------------------------- nav and logo -------------
+#gf-app{
+  width:100%;
+  height:100%;
+}
 #gf-main{
   width:100%;
   height: 100%;
+  overflow:hidden;
   background-color: $body-bg;
   &>section, .gf-view{
     width: 100%;
     height:100%;
+    overflow-y: auto;
     // clearfix
     &:before,
     &:after {
@@ -208,6 +215,13 @@ a{
   top: 2em;
   left: 2em;
   width: 200px;
+}
+#gf-nav-toggle{
+  // position: static;
+  position: absolute;
+  z-index: $index-nav-toggle;
+  top: 1em;
+  right: 1.5em;
 }
 #gf-nav{
   position: absolute;

@@ -29,7 +29,7 @@ gulp.task('scss', function() {
 
 // ---------------------------------------
 gulp.task('browserify',function(){
-	gulp.src('./public/app/app.js')
+	gulp.src('./public/app/index.js')
 	.pipe(browserify({
 		transform: 'reactify'
 	}))
