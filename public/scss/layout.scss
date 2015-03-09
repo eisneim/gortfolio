@@ -193,6 +193,8 @@ a{
   height: 100%;
   overflow:hidden;
   background-color: $body-bg;
+
+  transition: margin-left 0.3s ease;
   &>section, .gf-view{
     width: 100%;
     height:100%;
@@ -225,7 +227,7 @@ a{
 }
 #gf-nav{
   position: absolute;
-  right:0;
+  right:-305px;
   top: 0;
   height: 100%;
   width: 300px;
@@ -235,6 +237,7 @@ a{
   color: #fff;
   box-shadow: -2px 0 6px rgba(0,0,0,0.1);
 
+  transition: right 0.3s ease;
   #gf-nav-main-link{
     font-size: 2em;
     padding: 1em;
@@ -252,5 +255,12 @@ a{
     display: inline-block;
   }
 }
-
-
+// --------------- side nav open and close ----
+#gf-app.show-nav{
+    #gf-nav{
+      right:0;
+    }
+    #gf-main{
+       margin-left: -100px;
+    }
+}
