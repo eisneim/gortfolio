@@ -11,7 +11,7 @@ var Intro = React.createClass({
 						<h1 className="ua-line-loadin">袁维隆</h1>
 						<h2>Eisneim Terry</h2>
 						<h3>I Love To Do&nbsp;
-							<Typer words={'Parkour||Web Design||Web Development||Paintting||Motion Graphics'}/>
+							<Typer words={'Parkour||Freerunning||Web Design||Web Development||Paintting||Motion Graphics'}/>
 						</h3>
 						<p>23yrs old, currently based in Shanghai, China</p>
 					</header>

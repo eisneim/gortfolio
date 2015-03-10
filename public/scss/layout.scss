@@ -235,7 +235,7 @@ a{
   background-color: #fff;
   // background-color:$blue_grey;
   color: #fff;
-  box-shadow: -2px 0 6px rgba(0,0,0,0.1);
+  // box-shadow: -2px 0 6px rgba(0,0,0,0.1);
 
   transition: right 0.3s ease;
   #gf-nav-main-link{
@@ -263,4 +263,13 @@ a{
     #gf-main{
        margin-left: -100px;
     }
+}
+// ------------------ nav triangle svg
+#nav-svg-wrap{
+  position: absolute;
+  top: 0;
+  left:-198px;
+  width:200px;
+  height:100%;
+  // background:red;
 }

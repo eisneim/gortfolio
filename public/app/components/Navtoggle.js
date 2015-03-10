@@ -6,6 +6,19 @@ var Navtoggle = React.createClass({
 		this.gfelm = {
 			gfApp:document.getElementById('gf-app'),
 		}
+
+		this.gfelm.navSvg = Snap( document.getElementById('nav-svg') );;//;
+		this.gfelm.navSvgPoints = {
+			from: 	[115,800,115,800,115,1,115,1 ],//this.gfelm.navSvgPolygon.attr('points'),
+			to: 	[115,800,5 , 800,115,1,115,1 ],//this.gfelm.navSvg.getAttribute('data-points-hover'),
+		};
+		this.gfelm.navSvgPolygon = this.gfelm.navSvg.polygon( this.gfelm.navSvgPoints.from );
+		this.gfelm.navSvgPolygon.attr({
+			id:"nav-svg-poly",
+			fill: "#ffffff",
+		});
+		this.gfelm.isNavSvgOpen = false;
+
 	},
 	onToggle: function(){
 
@@ -14,6 +27,11 @@ var Navtoggle = React.createClass({
 
 		node.classList.toggle('uac-close');
 		node.classList.toggle('uac-dark');
+
+		this.gfelm.navSvgPolygon.animate({
+			'points': this.gfelm.isNavSvgOpen ? this.gfelm.navSvgPoints.from :  this.gfelm.navSvgPoints.to,
+		},300, mina.easeinout );
+		this.gfelm.isNavSvgOpen = ! this.gfelm.isNavSvgOpen;
 	},
 	render: function(){
 		var svgString = '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="64px" height="64px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve">  \

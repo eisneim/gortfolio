@@ -21,7 +21,9 @@ var Typer = React.createClass({
 
 		var activeWordIndex=0,$current = $words[0],$previous, $next;
 
-		var letterInInterval;
+		var letterInInterval = setInterval(function(){
+				letterIn($current.childNodes );
+			},100 );;
 
 		this.wordTimer = setInterval(function(){
 			if(letterInInterval) clearInterval( letterInInterval );
@@ -46,7 +48,7 @@ var Typer = React.createClass({
 
 			letterInInterval = setInterval(function(){
 				letterIn($current.childNodes );
-			},80 );
+			},letterAnimDelay );
 
 			letterOut( $previous.childNodes );
 
@@ -59,8 +61,10 @@ var Typer = React.createClass({
 
 			$wraper.classList.remove('uac-selected');
 
-			if(letters[inLetterIndex]){ letters[inLetterIndex].classList.remove('uac-out'); }
-			letters[inLetterIndex].classList.add('uac-in');
+			if(letters[inLetterIndex]){ 
+				letters[inLetterIndex].classList.remove('uac-out'); 
+				letters[inLetterIndex].classList.add('uac-in');
+			} 
 
 			inLetterIndex++;
 			if( inLetterIndex < letters.length ) {
@@ -101,7 +105,7 @@ var Typer = React.createClass({
 			var chars = [];
 			var classString = index == 0 ? 'uac-visible' : '';
 			for(var ii=0;ii<word.length;ii++){
-				chars.push( <i className={index==0?'uac-in':''} key={'letter-'+ii}><em>{word[ii]}</em></i> );
+				chars.push( <i key={'letter-'+ii}><em>{word[ii]}</em></i> );
 			}
 			return <b key={'word-'+index} className={classString}>{ chars}</b>
 		});
