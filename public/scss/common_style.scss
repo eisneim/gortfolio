@@ -1,4 +1,43 @@
 // --------------------------
+.ua-line-loadin{
+  position: relative;
+  &::after{
+    content:'';
+    display: block;
+    position: absolute;
+    top: 50%;
+    // left: 0;
+    width:0;
+    // right: 0;
+    height: 4px;
+    background: map-get($color-green, '300');
+    animation: uac-line-load-in 1s 0.3s ease-out;
+  }
+}
+
+@keyframes uac-line-load-in {
+  0% {
+    // left: 0;
+    width:0;
+  }
+  30%{
+    // left:0;
+    width: 100%;
+  }
+  35%{
+    // left:0;
+    width: 100%;
+  }
+  50%{
+    // right: 0;
+    width: 100%;
+  }
+  100% {
+    right: 0;
+    width: 0;
+  }
+}
+// --------------------------
 .uac-toggle-barcircle {
   float: left;
   cursor: pointer;
@@ -68,4 +107,89 @@
    			 stroke: #333;
    		}
 	}
+}
+// ------------------------------------
+.uac-words{
+  display: inline-block;
+  position: relative;
+  text-align: left;
+  b {
+    display: inline-block;
+    position: absolute;
+    white-space: nowrap;
+
+    left: 0;
+    top: 0;
+
+    &.uac-visible {
+      position: relative;
+    }
+    i,em{
+      // font-style: normal;
+      font-weight: bold;
+    }
+  }
+}
+.uac-words.uac-letter-type{
+  vertical-align: top;
+  overflow: hidden;
+  padding-right: 0.1em;
+  &::after {
+    /* vertical bar */
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom:0 ;
+    height: 90%;
+    width: 2px;
+    background-color: rgba(255,255,255,0.9);
+  }
+  &.uac-waiting::after {
+    animation:uac-pulse 1s infinite;
+  } 
+
+  &.uac-selected {
+    background-color: map-get($color-blue,'200');//rgba(0,88,180,0.5)
+    &::after {
+      visibility: hidden;
+    }
+
+    b {
+      color: #fff;
+    }
+  }
+  b {
+    visibility: hidden;
+    &.uac-visible {
+      visibility: visible;
+    }
+    &.uac-hidden {
+      visibility: hidden;
+    }
+  }
+  i {
+    position: absolute;
+    visibility: hidden;
+    &.uac-in {
+      position: relative;
+      visibility: visible;
+    }
+  }
+
+}
+@keyframes uac-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  40% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
 }

@@ -194,7 +194,7 @@ a{
   overflow:hidden;
   background-color: $body-bg;
 
-  transition: margin-left 0.3s ease;
+  transition: margin-left 0.3s ease-out;
   &>section, .gf-view{
     width: 100%;
     height:100%;

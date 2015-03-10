@@ -1,5 +1,5 @@
 var React = require('react');
-window.React = React;
+
 var Navtoggle = React.createClass({
 	componentDidMount: function(){
 		// store dom elements here
@@ -8,7 +8,6 @@ var Navtoggle = React.createClass({
 		}
 	},
 	onToggle: function(){
-		console.log(this);
 
 		this.gfelm.gfApp.classList.toggle('show-nav');
 		var node = this.getDOMNode();

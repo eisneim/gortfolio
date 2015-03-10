@@ -1,4 +1,5 @@
 var React = require('react');
+var Typer = require('../components/Typer.js');
 
 var Intro = React.createClass({
 	render: function(){
@@ -7,9 +8,11 @@ var Intro = React.createClass({
 				<div className="gf-centered-wraper">
 					<header className="gf-centered">
 						<br/><br/><br/>
-						<h1>袁维隆</h1>
+						<h1 className="ua-line-loadin">袁维隆</h1>
 						<h2>Eisneim Terry</h2>
-						<h3>I Love To Do Paintting</h3>
+						<h3>I Love To Do&nbsp;
+							<Typer words={'Parkour||Web Design||Web Development||Paintting||Motion Graphics'}/>
+						</h3>
 						<p>23yrs old, currently based in Shanghai, China</p>
 					</header>
 				</div>
