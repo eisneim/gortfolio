@@ -192,7 +192,8 @@ a{
   width:100%;
   height: 100%;
   overflow:hidden;
-  background-color: $body-bg;
+  background-color: $darker_blue;
+  color: #fff;
 
   transition: margin-left 0.3s ease-out;
   &>section, .gf-view{

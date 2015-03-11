@@ -1,7 +1,21 @@
 var React = require('react');
+var navActions = require('../actions/navActions.js');
+var navStore = require('../stores/navStore.js')
 
 var Navtoggle = React.createClass({
+	_onChange: function() {
+    	// this.setState({});
+    	console.log('navStore.getState().isNavOpen :'+ navStore.getState().isNavOpen );
+    	if( navStore.getState().isNavOpen ){
+    		this.openNav()
+    	}else{
+    		this.closeNav()
+    	}
+
+  	},
 	componentDidMount: function(){
+		navStore.addChangeListener(this._onChange);
+
 		// store dom elements here
 		this.gfelm = {
 			gfApp:document.getElementById('gf-app'),
@@ -19,19 +33,46 @@ var Navtoggle = React.createClass({
 		});
 		this.gfelm.isNavSvgOpen = false;
 
+		this._onChange();
 	},
-	onToggle: function(){
-
-		this.gfelm.gfApp.classList.toggle('show-nav');
+	componentWillUnmount:function(){
+		navStore.removeChangeListener(this._onChange);
+	},
+	openNav:function(){
+		this.gfelm.gfApp.classList.add('show-nav');
 		var node = this.getDOMNode();
 
-		node.classList.toggle('uac-close');
-		node.classList.toggle('uac-dark');
+		node.classList.add('uac-close');
+		node.classList.add('uac-dark');
 
 		this.gfelm.navSvgPolygon.animate({
-			'points': this.gfelm.isNavSvgOpen ? this.gfelm.navSvgPoints.from :  this.gfelm.navSvgPoints.to,
+			'points': this.gfelm.navSvgPoints.to,
 		},300, mina.easeinout );
-		this.gfelm.isNavSvgOpen = ! this.gfelm.isNavSvgOpen;
+	},
+	closeNav:function(){
+		this.gfelm.gfApp.classList.remove('show-nav');
+		var node = this.getDOMNode();
+
+		node.classList.remove('uac-close');
+		node.classList.remove('uac-dark');
+
+		this.gfelm.navSvgPolygon.animate({
+			'points': this.gfelm.navSvgPoints.from,
+		},300, mina.easeinout );
+	},
+	// toggleNav:function(){
+	// 	this.gfelm.gfApp.classList.toggle('show-nav');
+	// 	var node = this.getDOMNode();
+
+	// 	node.classList.toggle('uac-close');
+	// 	node.classList.toggle('uac-dark');
+
+	// 	this.gfelm.navSvgPolygon.animate({
+	// 		'points': navStore.getState().isNavOpen ? this.gfelm.navSvgPoints.from :  this.gfelm.navSvgPoints.to,
+	// 	},300, mina.easeinout );
+	// }
+	onToggle: function(){
+		navActions.toggle();
 	},
 	render: function(){
 		var svgString = '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="64px" height="64px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve">  \

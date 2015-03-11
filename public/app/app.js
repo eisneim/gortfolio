@@ -13,6 +13,9 @@ var App = React.createClass({
   //   params: PropTypes.object.isRequired,
   //   query: PropTypes.object.isRequired
   // },
+  componentDidMount: function(){
+
+  },
   render: function() {
   	var navSvg = '<svg data-points-hover="114.9,800.5 20,800.5 114.9,0 114.9,0 " id="nav-svg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 115.9 800" style="enable-background:new 0 0 115.9 800;" xml:space="preserve"> \
   	</svg>';
@@ -48,5 +51,18 @@ var App = React.createClass({
   }
 
 });
+
+// ---------- register hash change event to do some transation;
+// window.addEventListener("hashchange", onHashChange);
+// function onHashChange(e){
+// 	/*
+// 		newURl, oldURL,
+// 	 */ 
+	
+// }
+
+
+
+
 
 module.exports = App;
