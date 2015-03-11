@@ -1,35 +1,30 @@
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var EventEmitter = require('events').EventEmitter;
-var navConst = require('../constants/commonConst.js').nav ;
+var routeCoverConst = require('../constants/commonConst.js').routeCover ;
 var _ = require('lodash');
 
 var state = {
-  isNavOpen: false,
+  isCoverShown: false,
+  isAnimating: false,
 };
 
-function toggleFunc(openOrCloseOrToggle){
-  // console.log('__openOrCloseOrToggle:',openOrCloseOrToggle)
-  if( openOrCloseOrToggle == 'close'){
-    state.isNavOpen = false;
-  }else if (openOrCloseOrToggle == 'open'){
-    state.isNavOpen = true;
-  }else {
-    // just toggle
-    state.isNavOpen = !state.isNavOpen;
-  }
+function start(data){
+  // start animation
+  state.isCoverShown = true;
+}
 
-  
+function finish(data){
+  state.isCoverShown = false ;
 }
 
 // Extend nav Store with EventEmitter to add eventing capabilities
-var navStore = _.extend({}, EventEmitter.prototype, {
-
-  toggle:toggleFunc,
+var routeCoverStore = _.extend({}, EventEmitter.prototype, {
 
    getState: function(){
-    return {
-      isNavOpen: state.isNavOpen
-    };
+    return state
+   },
+   setState: function(key,value){
+    state[key] == value;
    },
 
   // Emit Change event
@@ -56,9 +51,12 @@ AppDispatcher.register(function(payload) {
 
   switch(action.actionType) {
 
-    // Respond to CART_ADD action
-    case navConst.TOGGLE:
-      toggleFunc(action.data);
+    // Respond to routeCover action
+    case routeCoverConst.START:
+      start(action.data);
+      break;
+    case routeCoverConst.FINISH:
+      finish(action.data);
       break;
 
     default:
@@ -66,10 +64,10 @@ AppDispatcher.register(function(payload) {
   }
 
   // If action was responded to, emit change event
-  navStore.emitChange();
+  routeCoverStore.emitChange();
 
   return true;
 
 });
 
-module.exports = navStore;
+module.exports = routeCoverStore;

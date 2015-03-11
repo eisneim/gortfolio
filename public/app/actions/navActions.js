@@ -1,5 +1,5 @@
 var AppDispatcher = require('../dispatcher/AppDispatcher');
-var navConst = require('../constants/navConst.js');
+var navConst = require('../constants/commonConst.js').nav ;
 
 // Define action methods
 var navActions = {

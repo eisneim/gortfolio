@@ -1,5 +1,6 @@
 var Router = require('react-router');
 var RouteHandler = Router.RouteHandler;
+var RouteCover = require('./components/RouteCover.js');
 var Link = Router.Link;
 
 var React = require('react');
@@ -25,7 +26,7 @@ var App = React.createClass({
 	    	<div id="gf-main">
 	    		<RouteHandler {...this.props}/>
 	    	</div>
-	    	<div id="gf-route-cover"></div>
+	    	<RouteCover />
 	    	<div id="gf-logo">
 	    		<img src="img/d5logo.svg" alt="第五维度工作室"/>
 	    	</div>

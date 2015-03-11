@@ -5,7 +5,7 @@ var navStore = require('../stores/navStore.js')
 var Navtoggle = React.createClass({
 	_onChange: function() {
     	// this.setState({});
-    	console.log('navStore.getState().isNavOpen :'+ navStore.getState().isNavOpen );
+    	// console.log('navStore.getState().isNavOpen :'+ navStore.getState().isNavOpen );
     	if( navStore.getState().isNavOpen ){
     		this.openNav()
     	}else{
@@ -19,19 +19,28 @@ var Navtoggle = React.createClass({
 		// store dom elements here
 		this.gfelm = {
 			gfApp:document.getElementById('gf-app'),
+			navSvgPoints : {
+				from: 	[115,800,115,800,115,1,115,1 ],//this.gfelm.navSvgPolygon.attr('points'),
+				to: 	[115,800,5 , 800,115,1,115,1 ],//this.gfelm.navSvg.getAttribute('data-points-hover'),
+			}
 		}
 
-		this.gfelm.navSvg = Snap( document.getElementById('nav-svg') );;//;
-		this.gfelm.navSvgPoints = {
-			from: 	[115,800,115,800,115,1,115,1 ],//this.gfelm.navSvgPolygon.attr('points'),
-			to: 	[115,800,5 , 800,115,1,115,1 ],//this.gfelm.navSvg.getAttribute('data-points-hover'),
-		};
+		this.gfelm.navSvg = Snap( document.getElementById('nav-svg') );//;
 		this.gfelm.navSvgPolygon = this.gfelm.navSvg.polygon( this.gfelm.navSvgPoints.from );
 		this.gfelm.navSvgPolygon.attr({
 			id:"nav-svg-poly",
 			fill: "#ffffff",
 		});
 		this.gfelm.isNavSvgOpen = false;
+
+		// -----create a backdrop overlay ------
+		this.gfelm.backdrop = document.createElement('div');
+		this.gfelm.backdrop.id = 'gf-nav-backdrop';
+		this.gfelm.gfApp.appendChild( this.gfelm.backdrop );
+		// add event listener to close nav
+		this.gfelm.backdrop.addEventListener('click',function(e){
+			navActions.toggle('close');
+		});
 
 		this._onChange();
 	},
@@ -44,6 +53,7 @@ var Navtoggle = React.createClass({
 
 		node.classList.add('uac-close');
 		node.classList.add('uac-dark');
+		this.gfelm.backdrop.style.visibility = 'visible';
 
 		this.gfelm.navSvgPolygon.animate({
 			'points': this.gfelm.navSvgPoints.to,
@@ -55,6 +65,8 @@ var Navtoggle = React.createClass({
 
 		node.classList.remove('uac-close');
 		node.classList.remove('uac-dark');
+
+		this.gfelm.backdrop.style.visibility = 'hidden';
 
 		this.gfelm.navSvgPolygon.animate({
 			'points': this.gfelm.navSvgPoints.from,

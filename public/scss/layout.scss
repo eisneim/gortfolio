@@ -237,6 +237,7 @@ a{
   // background-color:$blue_grey;
   color: #fff;
   // box-shadow: -2px 0 6px rgba(0,0,0,0.1);
+  z-index: $index-nav;
 
   transition: right 0.3s ease;
   #gf-nav-main-link{
@@ -246,6 +247,17 @@ a{
       margin-bottom: 0.2em;
     }
   }
+}
+#gf-nav-backdrop{
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  visibility:hidden;
+  background-color: rgba(0,0,0,0.3);
+  z-index: 100;
+  cursor: e-resize;
 }
 #gf-nav-social-link{
   width: 100%;
@@ -264,6 +276,9 @@ a{
     #gf-main{
        margin-left: -100px;
     }
+    #gf-nav-backdrop{
+      visibility:visible
+    }
 }
 // ------------------ nav triangle svg
 #nav-svg-wrap{
@@ -273,4 +288,15 @@ a{
   width:200px;
   height:100%;
   // background:red;
+}
+
+// --------------- route cover 
+#gf-route-cover{
+  width:100%;
+  height: 100%;
+  position:absolute;
+  top: 0;
+  left:0;
+  z-index: 99;
+
 }
