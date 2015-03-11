@@ -35,6 +35,19 @@ gulp.task('browserify',function(){
 	}))
 	.pipe(gulp.dest('./public/build/'));
 })
+
+gulp.task('build-js',function(){
+	gulp.src('./public/app/index.js')
+	.pipe(browserify({
+		transform: 'reactify'
+	}))
+	.pipe(uglify({
+		compress:true,
+        mangle:true,
+	}))
+	.pipe(gulp.dest('./public/build/'));
+})
+
 //launch browser in a port 
 gulp.task('open',function(){
 	var options  = {
@@ -57,7 +70,7 @@ gulp.task('watch',function(){
 
 gulp.task('default',['browserify']);
 
-gulp.task('build',['browserify','scss']);
+gulp.task('build',['build-js','scss']);
 
 gulp.task('serve',['browserify','watch']);
 
