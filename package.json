@@ -27,6 +27,7 @@
     "reactify": "^1.0.0"
   },
   "dependencies": {
+    "dragdealer": "^0.9.8",
     "flux": "^2.0.0",
     "lodash": "^3.3.1",
     "react": "^0.12.2",

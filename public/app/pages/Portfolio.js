@@ -5,7 +5,7 @@ var Portfolio = React.createClass({
 		return (
 			<section className="gf-view" id="gf-portfolio">
 				<div className="container">
-					<h1>this is Portfolio page</h1>
+					<h1>portfolio grid</h1>	
 				</div>
 				
 			</section>

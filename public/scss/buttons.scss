@@ -1,0 +1,49 @@
+.btn {
+  display: inline-block;
+  margin-bottom: 0; // For input.btn
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
+  border: 1px solid transparent;
+  white-space: nowrap;
+  background-color:#efefef;
+  padding: 0.3em 1em;
+  border-radius: 3px;
+
+  &:active,
+  &.active ,
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    border-width:1px;
+    outline: 0;
+    background-image: none;
+  }
+  &:active{
+    box-shadow: inset 0 3px 5px rgba(0,0,0,.125) ;
+  }
+
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    cursor: not-allowed;
+    pointer-events: none; // Future-proof disabling of clicks
+    opacity:.65;
+    box-shadow:none;
+  }
+
+}
+
+.btn.btn-lg{
+  font-size: 1.5em;
+}
+
+.btn.btn-ghost{
+  border-color: #fff;
+  background: none;
+  color: #fff;
+  &:hover,&:focus{
+    background: rgba(255,255,255,0.1);
+  }
+}

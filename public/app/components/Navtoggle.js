@@ -60,6 +60,7 @@ var Navtoggle = React.createClass({
 		},300, mina.easeinout );
 	},
 	closeNav:function(){
+		var that = this;
 		this.gfelm.gfApp.classList.remove('show-nav');
 		var node = this.getDOMNode();
 
@@ -70,7 +71,9 @@ var Navtoggle = React.createClass({
 
 		this.gfelm.navSvgPolygon.animate({
 			'points': this.gfelm.navSvgPoints.from,
-		},300, mina.easeinout );
+		},300, mina.easeinout, function(){
+
+		});
 	},
 	// toggleNav:function(){
 	// 	this.gfelm.gfApp.classList.toggle('show-nav');

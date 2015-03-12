@@ -1,3 +1,5 @@
+$dark-grey-blue:#2A2E39;
+
 // put some global class here ------
 body,html{
   font-family: Lato,Helvetica Neue,"Hiragino Sans GB","Microsoft YaHei","微软雅黑","STHeiti","WenQuanYi Micro Hei",SimSun,sans-serif,Arial;
@@ -71,7 +73,7 @@ a{
   text-decoration: none;
   &:hover,&:focus,&.active{
     outline: none;
-    border:none;
+    // border:none;
     color: map-get($color-green,'500');
   }
 }
@@ -192,7 +194,7 @@ a{
   width:100%;
   height: 100%;
   overflow:hidden;
-  background-color: $darker_blue;
+  background-color:  $dark-grey-blue;//$darker_blue;
   color: #fff;
 
   transition: margin-left 0.3s ease-out;
@@ -218,6 +220,7 @@ a{
   top: 2em;
   left: 2em;
   width: 200px;
+  user-select:none;
 }
 #gf-nav-toggle{
   // position: static;
@@ -240,6 +243,9 @@ a{
   z-index: $index-nav;
 
   transition: right 0.3s ease;
+  #nav-svg-wrap{
+    pointer-events:none;
+  }
   #gf-nav-main-link{
     font-size: 2em;
     padding: 1em;
@@ -298,5 +304,5 @@ a{
   top: 0;
   left:0;
   z-index: 99;
-
+  display: none;
 }

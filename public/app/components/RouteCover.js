@@ -5,13 +5,12 @@ var routeCoverActions = require('../actions/routeCoverActions.js');
 var RouteCover = React.createClass({
 	_onChange: function() {
     	// this.setState({});
-    	console.log('--route change---')
 
     	var state = routeCoverStore.getState();
     	if( state.isCoverShown ){
     		this.start();
     	}else{
-    		this.finish( state );
+    		this.finish( );
     	}
 
   	},
@@ -23,25 +22,26 @@ var RouteCover = React.createClass({
 			[0,0,  0,0,        0,height,      	0,height ], // 0 start at right;
 			[0,0,  width/4,0,  1,height,      	0,height ], // 1
 
-			[0,0,  width/4,0,  width/4 ,height, 0,height ], // 2
-			[0,0,  width/2,0,  width/4 ,height, 0,height ], // 3
+			// [0,0,  width/4,0,  width/4 ,height, 0,height ], // 2
+			[0,0,  width/4,0,  width/2 ,height, 0,height ], // 3
 
-			[0,0,  width/2,0,  width/2 ,height, 0,height], 
+			// [0,0,  width/2,0,  width/2 ,height, 0,height], 
 			[0,0,  width/4*3,0,  width/2 ,height, 0,height],
 
-			[0,0,  width/4*3,0,  width/4*3 ,height, 0,height],
-			[0,0,  width,0,    width/4*3 ,height, 0,height],
+			// [0,0,  width/4*3,0,  width/4*3 ,height, 0,height],
+			[0,0,  width/4*3,0,    width ,height, 0,height],
 
 			[0,0,  width,0,    width,height, 	0,height],//full screen
 		];
 		this.finishPoints = [ 
-			[0,0, width,0, width,height, 0,height ],// full screen
-			[width-1,0,  width,0,        width,height,      	width-1,height ]
+			[0,0, 		width,0, 		width,height, 		0,height ],// full screen
+			[width/4,0,  		width,0,  	width,height,	0,height ],
+			[width,0,  width,0,        width,height,      	width/4*3,height ],
+			[width,0,  width,0,        width,height,      	width,height ],
 		];
 
 		this.gfelm = {
 			routeCoverSvg : Snap( document.getElementById('route-cover-svg') ),
-
 		};
 
 		this.gfelm.routeCoverPoly= this.gfelm.routeCoverSvg.polygon( this.startPoints[0] );
@@ -53,6 +53,8 @@ var RouteCover = React.createClass({
 
 	},
 	start:function(){
+		// show element
+		this.getDOMNode().style.display = 'block';
 		var index = 1;
 		var that = this;
 		anim();
@@ -70,22 +72,34 @@ var RouteCover = React.createClass({
 				}else{
 					// done
 					routeCoverStore.setState('isAnimating',false );
+					// call finish
+					routeCoverActions.finish(  );
 				}
 
 			} );
 		}
 		
 	},
-	finish:function(){
-		var that = this;
+	finish:function(  ){
+		// this func will be called twice, execute at last time
+		if(routeCoverStore.getState().isAnimating) return;
+		if(routeCoverStore.getState().isCoverShown ) return;
 
-		this.gfelm.routeCoverPoly.animate({
-				'points': this.finishPoints[ 1 ],
-		},600, mina.easeinout,function(){
-			that.gfelm.routeCoverPoly.attr({
-				points: that.startPoints[0],
-			});
+		var that = this;
+		this.gfelm.routeCoverPoly.animate({'points': this.finishPoints[ 1 ],},80, mina.easeinout,function(){
+			that.gfelm.routeCoverPoly.animate({'points': that.finishPoints[ 2 ],},300, mina.easeinout,function(){
+				that.gfelm.routeCoverPoly.animate({'points': that.finishPoints[ 3 ],},80, mina.easeinout,function(){
+					that.gfelm.routeCoverPoly.attr({
+						points: that.startPoints[0],
+					});
+					// and hide element
+					that.getDOMNode().style.display = 'none';
+				})
+			})
+
 		} )
+		
+			
 	},
 	render: function(){
 		var width = window.innerWidth, height = window.innerHeight;

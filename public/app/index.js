@@ -24,7 +24,7 @@ Router.run(routes,function(Handler,state) {
  		routeCoverActions.finish();
 
  		React.render(<Handler {...state}/>, document.body );
- 	}, 1500);
+ 	}, 800);
   // render page;
   
 });
