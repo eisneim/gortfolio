@@ -1,3 +1,6 @@
+#gf-main>section#gf-projects{
+	overflow-y:hidden;
+}
 #gf-projects{
 	transform-style: preserve-3d;
 	perspective: 1200px;
@@ -60,10 +63,18 @@
 }
 #gf-projects-switch{
 	// font-size: 20px;
+	display:block;
 	position:absolute;
-	top: 2.8em;
+	top: 2em;
   	right: 10em;
   	z-index: 10;
+  	width: 100px;
+  	height: 100px;
+  	cursor: pointer;
+  	background: url('../img/page/switchmin.svg') center center no-repeat;
+  	.gf-showall  & {
+  		background: url('../img/page/switchmax.svg') center center no-repeat;
+  	}
 }
 .gf-project-holder{
 	position:relative;

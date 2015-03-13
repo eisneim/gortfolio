@@ -22,6 +22,9 @@ var Projects = React.createClass({
 		this._initDrag();
 		this._initEvents();
 	},
+	componentWillUnmount:function(){
+		document.removeEventListener( 'keydown',  this.keyEventHandler );
+	},
 	_initDrag: function(){
 		var that = this;
 		this.dd = new Dragdealer('gf-projects-drag', {
@@ -58,6 +61,34 @@ var Projects = React.createClass({
 			} );
 
 		} );
+		this.keyEventHandler = function( ev ) {
+			var keyCode = ev.keyCode || ev.which,
+				currentSlide = self.elm.slides[ self.ui.currentSlide ];
+
+
+			switch (keyCode) {
+				case 40: // down key
+					if( self.ui.isFullscreen ) return;
+					self.onToggleView( currentSlide );
+					break; 
+				 //up
+				case 38:
+					// if not fullscreen don't reveal the content. If you want to navigate directly to the content then remove this check.
+					if( !self.ui.isFullscreen ) return;
+					self.onToggleView( currentSlide );
+					break;
+					// left;
+				case 37:
+					self.dd.setStep( self.ui.currentSlide - 1 );
+					break;
+				case 39:
+					// righ
+					self.dd.setStep( self.ui.currentSlide + 2 );
+					break;
+			}
+		};
+		// keyboard navigation events
+		document.addEventListener( 'keydown',  this.keyEventHandler );
 
 	},
 	onToggleView:function(){
@@ -113,7 +144,7 @@ var Projects = React.createClass({
 
 		return (
 			<section className="gf-view" id="gf-projects">
-				<button id="gf-projects-switch" onClick={this.onToggleView} className="btn btn-ghost">show all</button>
+				<a id="gf-projects-switch" onClick={this.onToggleView}></a>
 				<div id="gf-projects-drag" className="dragdealer">
 					<div id="gf-projects-wraper" className="handle" style={{'width': (projects.length*100)+'%','transformStyle': 'preserve-3d' }}>
 						{projectElms}
