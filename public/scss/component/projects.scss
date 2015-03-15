@@ -115,11 +115,21 @@
 	.gf-project-title{
 		text-align: center;
 		position:absolute;
-		bottom:-100px;
+		bottom:-130px;
 		width:100%;
 		opacity: 0;
 		transform: translateY(80px);
 		transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+		// h1{margin: 0;}
+		&>a{
+			display:block;
+			margin:0px auto;
+			width: 60px;
+			height: 60px;
+			background: url('../img/icons/arrow-down.svg') center center no-repeat;
+			animation:sway-up-down 1s ease-in-out infinite alternate;
+			transform: rotate(-90deg);
+		}
 	}
 }
 .gf-project-info{

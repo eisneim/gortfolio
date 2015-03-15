@@ -24,3 +24,11 @@
     animation-fill-mode: forwards;
   }
 // ----------
+@keyframes sway-up-down {
+  from{
+    transform:translateY(-5px)
+  }
+  to{
+    transform:translateY(5px)
+  }
+}

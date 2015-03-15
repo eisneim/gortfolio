@@ -1,14 +1,16 @@
 var React = require('react');
-var Navigation = require('react-router').Navigation;
+var Router = require('react-router');
+var RouteHandler = Router.RouteHandler;
+var Navigation = Router.Navigation;
 var Dragdealer = require('dragdealer').Dragdealer;
 var navActions = require('../actions/navActions.js');
 
 var Projects = React.createClass({
-	mixins: [Navigation],
+	mixins: [Navigation,Router.State],
 	statics:{
 		// scen enter animation
 		willTransitionTo: function (transition, params) {
-			
+
 		},
 		// leave animation
 		willTransitionFrom: function(transition, component ){
@@ -29,6 +31,12 @@ var Projects = React.createClass({
 	getInitialState:function(){
 		return {
 			// isFullscreen: false,
+			activePorject: this.getParams().projectId,
+			ui:{
+				isFullscreen:false,
+				currentSlide: 0,
+			}
+
 		}
 	},
 	componentDidMount:function(){
@@ -73,7 +81,13 @@ var Projects = React.createClass({
 		var self = this;
 		this.elm.slides.forEach( function( slide ) {
 			// clicking the slides when not in isFullscreen mode
-			slide.addEventListener( 'click', function() {
+			slide.addEventListener( 'click', function(e) {
+				if(e.target.tagName == 'A') {
+					if( e.target.className.indexOf('gf-project-link') > -1 ){
+						self.showProject();
+					}
+					return;	
+				} 
 
 				if( !self.ui.isFullscreen || self.dd.activity ) return false;
 				
@@ -132,17 +146,28 @@ var Projects = React.createClass({
 		// this.elm.dragwraper.style.transform = 'translateX(-'+( that.ui.currentSlide /that.elm.slides.length * 100)+'%)';
 		this.getDOMNode().classList.add('gf-leave');
 	},
+	/**
+	 * show a specific project and hide dragable gird;
+	 */
+	showProject:function(){
+		this.leaveSence();
+
+	},
 	render: function(){
 		var projects = [{
+				_id:'29423',
 				name:'project1',
 				cover:'images/1.jpg',
 			},{
+				_id:'6423',
 				name:'project2',
 				cover:'images/2.jpg',
 			},{
+				_id:'4243423',
 				name:'project3',
 				cover:'images/3.jpg',
 			},{
+				_id:'133',
 				name:'project4',
 				cover:'images/1.jpg',
 			}
@@ -161,6 +186,7 @@ var Projects = React.createClass({
 					</div>
 					<div className="gf-project-title">
 						<h1>{pp.name}</h1>
+						<a className="gf-project-link" href={ '#/project/'+pp._id }></a>
 					</div>
 				</div>
 			)
@@ -175,7 +201,9 @@ var Projects = React.createClass({
 					</div>
 				</div>
 				
-				
+				<div id="gf-project">
+					<RouteHandler {...this.props}/>
+				</div>
 			</section>
 		)
 	}
