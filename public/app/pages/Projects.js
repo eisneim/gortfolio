@@ -1,7 +1,31 @@
 var React = require('react');
+var Navigation = require('react-router').Navigation;
 var Dragdealer = require('dragdealer').Dragdealer;
+var navActions = require('../actions/navActions.js');
 
 var Projects = React.createClass({
+	mixins: [Navigation],
+	statics:{
+		// scen enter animation
+		willTransitionTo: function (transition, params) {
+			
+		},
+		// leave animation
+		willTransitionFrom: function(transition, component ){
+			// close side navigation;
+			navActions.toggle('close');
+			// start leave animation;
+			component.leaveSence();
+
+			setTimeout(function(){
+			 	component.leaveAnimationDone = true;
+			 	transition.retry();
+			 },500);
+			if(!component.leaveAnimationDone){
+				transition.abort();
+			}
+		},
+	},
 	getInitialState:function(){
 		return {
 			// isFullscreen: false,
@@ -104,9 +128,9 @@ var Projects = React.createClass({
 			that.ui.isFullscreen = !that.ui.isFullscreen;
 		},520);
 	},
-	chooseSlide:function(e){
-		console.log(e);
-		console.log('---clicked---');
+	leaveSence:function(){
+		// this.elm.dragwraper.style.transform = 'translateX(-'+( that.ui.currentSlide /that.elm.slides.length * 100)+'%)';
+		this.getDOMNode().classList.add('gf-leave');
 	},
 	render: function(){
 		var projects = [{

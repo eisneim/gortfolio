@@ -8,8 +8,7 @@
 	&.gf-showall{
 		#gf-projects-drag{
 			// transform: translate3d(0,0,-100em);
-			transform: translate3d(-50%,-50%,0);
-			
+			// transform: translate3d(-50%,-50%,0);
 			width:50%;
 			height:50%;
 			// top:25%;
@@ -21,8 +20,7 @@
 		}
 		.gf-project-holder:not(.active){
 			opacity:0.4;
-			
-			
+
 		}
 		.gf-project-holder{
 			.gf-project-info{ 
@@ -37,7 +35,24 @@
 			}
 		}
 		
+	}// end of gf-showall
+	// &.gf-showall.gf-leave{
+	// 	#gf-projects-drag{
+
+	// 	}
+	// }
+	&.gf-leave,&.gf-showall.gf-leave{
+		#gf-projects-drag{
+			transition: transform 0.9s ease-out,
+				top 0.9s ease-out,
+				left 0.9s ease-out;
+
+			transform: translate3d(0,-105%,0);
+			top: 0;
+			left:0;
+		}
 	}
+
 }
 #gf-projects-drag{
 	height: 100%;
@@ -50,9 +65,9 @@
 	cursor: grab;
 	user-select:none;
 	// transition: all 0.3s ease-out;
-	transition: transform 0.3s linear,
-				width 0.3s linear,
-				height 0.3s linear;
+	transition: transform 0.3s ease-out,
+				width 0.3s ease-out,
+				height 0.3s ease-out;
 }
 #gf-projects-wraper{
 	position:absolute;
