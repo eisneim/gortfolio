@@ -145,6 +145,10 @@ var Projects = React.createClass({
 	leaveSence:function(){
 		// this.elm.dragwraper.style.transform = 'translateX(-'+( that.ui.currentSlide /that.elm.slides.length * 100)+'%)';
 		this.getDOMNode().classList.add('gf-leave');
+		var self = this;
+		setTimeout(function(){
+			document.getElementById('gf-projects-drag').style.display = 'none';
+		},1000);
 	},
 	/**
 	 * show a specific project and hide dragable gird;

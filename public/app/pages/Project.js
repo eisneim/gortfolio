@@ -7,7 +7,7 @@ var Project = React.createClass({
 	statics:{
 		// scen enter animation
 		willTransitionTo: function (transition, params) {
-
+			
 		},
 		// leave animation
 		willTransitionFrom: function(transition, component ){
