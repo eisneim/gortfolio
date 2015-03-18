@@ -1,8 +1,0 @@
-{
-  "name": "gortforlio",
-  "private": true,
-  "version": "0.0.1",
-  "dependencies": {
-    "snap.svg": "~0.3.0"
-  }
-}
