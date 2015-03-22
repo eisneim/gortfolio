@@ -1,0 +1,28 @@
+.gf-grid{
+	width: 100%;
+	height: 100%;
+	position: relative;
+	.gf-grid-item{
+		display: block;
+		position: absolute;
+		height: auto;
+		margin:0;
+		padding:0;
+
+		background-color: map-get($color-teal,'500');
+		// border:solid 1px #fff;
+		// ---------- clearfix 
+		// &:before,
+		// &:after {
+		//   content: " "; /* 1 */
+		//   display: table; /* 2 */
+		// }
+		// &:after {
+		//   clear: both;
+		// }
+	}
+	.gf-grid-item-inner{
+		width: 100%;
+		height: 100%;
+	}
+}
