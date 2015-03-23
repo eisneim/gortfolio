@@ -1,4 +1,5 @@
 var React = require('react');
+var _ = require('lodash'); // for debounce
 
 /**
  * 	  		Grid item type
@@ -40,11 +41,23 @@ var Grid = React.createClass({
 
 	},
 	componentDidMount: function(){
-
+		var self = this;
+		// add resize listern
+		window.addEventListener('resize', self.onWindowResize );
 	},
 	componentWillUnmount:function(){
-		
+		var self = this;
+		// remove resize listern	
+		window.removeEventListener('resize', self.onWindowResize );
 	},
+	onWindowResize:_.debounce( function(){
+		this.props.gridWidth = window.innerWidth;
+		this.gridData.columns = Math.floor(this.props.gridWidth / this.props.minItemWidth );
+		var baseWidth = this.props.gridWidth / this.gridData.columns  - this.props.gutter;
+		console.log('should reRender');
+		this.setState({baseWidth: baseWidth });
+
+	}, 200 ),	
 	setUp:function(){
 		/**
 		 * setting up the virtual grid

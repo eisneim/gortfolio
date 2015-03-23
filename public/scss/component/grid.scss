@@ -10,16 +10,8 @@
 		padding:0;
 
 		background-color: map-get($color-teal,'500');
-		// border:solid 1px #fff;
-		// ---------- clearfix 
-		// &:before,
-		// &:after {
-		//   content: " "; /* 1 */
-		//   display: table; /* 2 */
-		// }
-		// &:after {
-		//   clear: both;
-		// }
+		// transition here
+		transition: top 0.3s ease, left 0.3s ease;
 	}
 	.gf-grid-item-inner{
 		width: 100%;
