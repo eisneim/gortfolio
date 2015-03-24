@@ -1,4 +1,5 @@
 var React = require('react');
+// var Router = require('react-router');
 var _ = require('lodash'); // for debounce
 
 /**
@@ -44,6 +45,13 @@ var Grid = React.createClass({
 		var self = this;
 		// add resize listern
 		window.addEventListener('resize', self.onWindowResize );
+		// now resize container
+		this.elms = {
+			container: this.getDOMNode(),
+		};
+
+		this.elms.container.style.width = this.props.gridWidth+'px';
+		this.elms.container.style.marginLeft = this.props.gutter+'px';
 	},
 	componentWillUnmount:function(){
 		var self = this;
@@ -51,7 +59,7 @@ var Grid = React.createClass({
 		window.removeEventListener('resize', self.onWindowResize );
 	},
 	onWindowResize:_.debounce( function(){
-		this.props.gridWidth = window.innerWidth;
+		this.props.gridWidth = window.innerWidth-20;
 		this.gridData.columns = Math.floor(this.props.gridWidth / this.props.minItemWidth );
 		var baseWidth = this.props.gridWidth / this.gridData.columns  - this.props.gutter;
 		console.log('should reRender');
@@ -224,8 +232,6 @@ var Grid = React.createClass({
 				</figure>
 			)
 		});
-
-		// console.log('should start render');
 
 		return (
 			<div className="gf-grid">

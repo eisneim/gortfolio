@@ -8,6 +8,7 @@ var React = require('react'),
     Project = require('./pages/Project.js'),
     About = require('./pages/About.js'),
     Portfolio = require('./pages/Portfolio.js'),
+    PortfolioItem = require('./pages/PortfolioItem.js'),
     Ideas = require('./pages/Ideas.js'),
     Contact = require('./pages/Contact.js');
 
@@ -15,7 +16,9 @@ module.exports = (
   <Route name='app' path='/' handler={App}>
   	<Route name='intro' path='/intro' handler={Intro} />
     <Route name='about' path='/about' handler={About} />
-    <Route name='portfolio' path='/portfolio' handler={Portfolio} />
+    <Route name='portfolio' path='/portfolio' handler={Portfolio} >
+        <Route name="portfolioItem" path=":itemName" handler={PortfolioItem}/>
+    </Route>
     <Route name='projects' path='/project' handler={Projects} >
       <Route name="project" path=":projectId" handler={Project}/>
     </Route>

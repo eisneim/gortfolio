@@ -11,5 +11,7 @@ module.exports = {
 	  TOGGLE: null
 	}),
 
-	
+	grid: keyMirror({
+	  REFill: null
+	}),
 }

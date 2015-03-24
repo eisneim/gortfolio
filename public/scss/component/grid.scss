@@ -2,6 +2,7 @@
 	width: 100%;
 	height: 100%;
 	position: relative;
+	margin-top: 10px;
 	.gf-grid-item{
 		display: block;
 		position: absolute;
@@ -11,7 +12,7 @@
 
 		background-color: map-get($color-teal,'500');
 		// transition here
-		transition: top 0.3s ease, left 0.3s ease;
+		transition: top 0.4s ease, left 0.4s ease,width 0.3s ease-out, height 0.3s ease-out;
 	}
 	.gf-grid-item-inner{
 		width: 100%;
