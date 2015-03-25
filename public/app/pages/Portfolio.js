@@ -2,11 +2,13 @@ var React = require('react');
 var Grid = require('../components/Grid.js');
 var Router = require('react-router');
 var RouteHandler = Router.RouteHandler;
+var gridSvc = require('../service/gridSvc.js');
+var _ = require('lodash');
+
 
 var Portfolio = React.createClass({
 	getInitialState: function(){
-		return {
-			items: [
+		var items = [
 				{
 					name:'1th item',
 					url:"item1",
@@ -72,10 +74,43 @@ var Portfolio = React.createClass({
 					url:"item13",
 					img:'http://placehold.it/200x320/EBC575/fff',
 				}
-			],
+			];
+
+		this.grid = gridSvc({
+			gridWidth: window.innerWidth - 20,
+			minItemWidth:280,
+			itemLength: items.length,
+		});
+
+		var gridData =  this.grid.fill();
+		console.log(gridData);
+
+		return {
+			items: items,
+			gridData:gridData,
 		}
 	},
+	componentWillMount: function(){
+		
+	},
+	componentDidMount:function(){
+		this.debouncedFill = _.debounce( this.refill , 200);
+		// add window resize event listener
+		window.addEventListener('resize', this.debouncedFill );
+	},
+	componentWillUnmount:function(){
+		// remove grid resize listener
+		window.removeEventListener('resize',this.debouncedFill  );
 
+	},
+	refill:function(){
+		var gridData = this.grid.refill();
+
+
+		this.setState({
+			gridData: gridData,
+		});
+	},
 	render: function(){
 		var items = [];
 		this.state.items.forEach(function(item,index){
@@ -90,11 +125,10 @@ var Portfolio = React.createClass({
 				</a>
 			)
 		});
-		var gridWidth = window.innerWidth - 20;
 
 		return (
 			<section className="gf-view" id="gf-portfolio">
-				<Grid items={items} gridWidth={gridWidth} minItemWidth={280} />
+				<Grid items={items} gridData={this.state.gridData}  />
 				<div id="gf-portfolio-item">
 					<RouteHandler {...this.props}/>
 				</div>

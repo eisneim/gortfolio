@@ -33,7 +33,8 @@ gulp.task('browserify',function(){
 	.pipe(browserify({
 		transform: 'reactify'
 	}))
-	.pipe(gulp.dest('./public/build/'));
+	.pipe(gulp.dest('./public/build/'))
+	.on( "error", handleError);
 })
 
 gulp.task('build-js',function(){
@@ -76,3 +77,8 @@ gulp.task('serve',['browserify','watch']);
 
 
 
+// --------- utils ------------
+function handleError(err) {
+  console.log(err.toString());
+  this.emit('end');
+}

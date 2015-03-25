@@ -26,7 +26,7 @@ var Item = React.createClass({
 	componentWillUnmount:function(){
 		
 	},
-	leaveSence:function(){
+	leaveScene:function(){
 		// this.elm.dragwraper.style.transform = 'translateX(-'+( that.ui.currentSlide /that.elm.slides.length * 100)+'%)';
 		// this.getDOMNode().classList.add('gf-leave');
 	},

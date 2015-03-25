@@ -2,16 +2,13 @@ var keyMirror = require('react/lib/keyMirror');
 
 // Define action constants
 module.exports = {
-	routeCover: keyMirror({
-	  START: null,
-	  FINISH: null,
-	}),
+    routeCover: keyMirror({
+        START: null,
+        FINISH: null,
+    }),
 
-	nav: keyMirror({
-	  TOGGLE: null
-	}),
+    nav: keyMirror({
+        TOGGLE: null
+    }),
 
-	grid: keyMirror({
-	  REFill: null
-	}),
 }
