@@ -19,7 +19,7 @@ var Grid = React.createClass({
 	componentDidMount: function(){
 		var wraper = this.getDOMNode();
 		wraper.style.marginLeft="10px";
-		wraper.style.width = (window.innerWidth - 10)+'px';
+		wraper.style.width = (window.innerWidth - 30)+'px';
 	},
 	componentWillUnmount:function(){
 		

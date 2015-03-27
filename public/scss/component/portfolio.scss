@@ -8,10 +8,12 @@
 		background-size: cover;
 		background-position: center center;
 	}
+	&.showItem{
+		overflow: hidden;
+	}
 }
 #gf-portfolio-item{
-	width: 100%;
-	height: 100%;
+	width:0;
 	position: absolute;
 	top:0;
 	left: 0;
@@ -19,5 +21,7 @@
 	&.show{
 		z-index: 11;
 		visibility:visible;
+		width: 100%;
+		height: 100%;
 	}
 }

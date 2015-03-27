@@ -81,7 +81,7 @@ var Portfolio = React.createClass({
 			];
 
 		this.grid = gridSvc({
-			gridWidth: window.innerWidth - 20,
+			gridWidth: window.innerWidth - 40,
 			minItemWidth:280,
 			itemLength: items.length,
 		});
@@ -97,11 +97,13 @@ var Portfolio = React.createClass({
 
 	},
 	componentDidMount:function(){
+		var self = this;
 		this.debouncedFill = _.debounce( this.refill , 200);
 		// add window resize event listener
 		window.addEventListener('resize', this.debouncedFill );
 
 		this.elms = {
+			self: this.getDOMNode(),
 			portfolioItem: document.getElementById('gf-portfolio-item'),
 		}
 	},
@@ -128,28 +130,19 @@ var Portfolio = React.createClass({
 	 * @return void
 	 */
 	handleSelect:function(){
-		var self = this;
-		var selectedItem = this.getParams().itemName;
-		if(!selectedItem) return;
-		var $selectedItem = document.getElementById( 'gf-'+selectedItem );
-		if(!$selectedItem) return;
-		//----------- should start to load item
 
-		//---------- should start the animation
-		var $innerWraper = $selectedItem.parentNode ;
-		this.animateGridItem(true, $innerWraper );
-			
-
-		console.log( $innerWraper );
-		// --------- fade in the item
-		setTimeout(function(){
-			self.elms.portfolioItem.classList.add('show');
-		},400);
 	},
 	render: function(){
 		// this.handleSelect();
+		var sectionClasses = 'gf-view';
+		var itemWraperClass = '';
 
 		var items = [],selected, selectedItem = this.getParams().itemName;
+		if( selectedItem ){
+			sectionClasses+= ' showItem';
+			itemWraperClass += ' show';
+		}
+
 		this.state.items.forEach(function(item,index){
 			var style = {
 				backgroundImage: 'url('+item.img+')',
@@ -165,9 +158,9 @@ var Portfolio = React.createClass({
 		});
 
 		return (
-			<section className="gf-view" id="gf-portfolio">
+			<section className={sectionClasses} id="gf-portfolio">
 				<Grid items={items} gridData={this.state.gridData}  selected={selected}/>
-				<div id="gf-portfolio-item">
+				<div id="gf-portfolio-item" className={itemWraperClass}>
 					<RouteHandler {...this.props}/>
 				</div>
 			</section>
