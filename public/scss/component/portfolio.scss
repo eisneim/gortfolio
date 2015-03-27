@@ -17,6 +17,7 @@
 	left: 0;
 	visibility: hidden;
 	&.show{
+		z-index: 11;
 		visibility:visible;
 	}
 }

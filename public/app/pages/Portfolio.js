@@ -7,6 +7,10 @@ var _ = require('lodash');
 
 
 var Portfolio = React.createClass({
+	mixins: [ 
+		Router.Navigation,
+		Router.State 
+	],
 	getInitialState: function(){
 		var items = [
 				{
@@ -83,7 +87,6 @@ var Portfolio = React.createClass({
 		});
 
 		var gridData =  this.grid.fill();
-		console.log(gridData);
 
 		return {
 			items: items,
@@ -91,12 +94,16 @@ var Portfolio = React.createClass({
 		}
 	},
 	componentWillMount: function(){
-		
+
 	},
 	componentDidMount:function(){
 		this.debouncedFill = _.debounce( this.refill , 200);
 		// add window resize event listener
 		window.addEventListener('resize', this.debouncedFill );
+
+		this.elms = {
+			portfolioItem: document.getElementById('gf-portfolio-item'),
+		}
 	},
 	componentWillUnmount:function(){
 		// remove grid resize listener
@@ -111,16 +118,47 @@ var Portfolio = React.createClass({
 			gridData: gridData,
 		});
 	},
+	/**
+	 * when portfolio item is selected, route will change and this.render() will fire
+	 * in this function we need to do:
+	 * 1. grab which item is clicked by match the routeParams
+	 * 2. start to load item
+	 * 3. animate the grid item inner wraper to take the whole screen
+	 * 4. fade in the portfoli item
+	 * @return void
+	 */
+	handleSelect:function(){
+		var self = this;
+		var selectedItem = this.getParams().itemName;
+		if(!selectedItem) return;
+		var $selectedItem = document.getElementById( 'gf-'+selectedItem );
+		if(!$selectedItem) return;
+		//----------- should start to load item
+
+		//---------- should start the animation
+		var $innerWraper = $selectedItem.parentNode ;
+		this.animateGridItem(true, $innerWraper );
+			
+
+		console.log( $innerWraper );
+		// --------- fade in the item
+		setTimeout(function(){
+			self.elms.portfolioItem.classList.add('show');
+		},400);
+	},
 	render: function(){
-		var items = [];
+		// this.handleSelect();
+
+		var items = [],selected, selectedItem = this.getParams().itemName;
 		this.state.items.forEach(function(item,index){
 			var style = {
 				backgroundImage: 'url('+item.img+')',
 			};
-			var itemid = 'pf-'+item.url;
+			if(item.url == selectedItem) selected = index;
+			var itemid = 'gf-'+item.url;
 
 			items.push(
-				<a id={itemid} href={'#/portfolio/'+item.url} className="portfolio-item" style={style}>
+				<a id={itemid}  href={'#/portfolio/'+item.url} className="portfolio-item" style={style} >
 					<span>{item.name}</span>
 				</a>
 			)
@@ -128,7 +166,7 @@ var Portfolio = React.createClass({
 
 		return (
 			<section className="gf-view" id="gf-portfolio">
-				<Grid items={items} gridData={this.state.gridData}  />
+				<Grid items={items} gridData={this.state.gridData}  selected={selected}/>
 				<div id="gf-portfolio-item">
 					<RouteHandler {...this.props}/>
 				</div>

@@ -7,7 +7,7 @@ var Item = React.createClass({
 	statics:{
 		// scen enter animation
 		willTransitionTo: function (transition, params) {
-			
+
 		},
 		// leave animation
 		willTransitionFrom: function(transition, component ){
@@ -18,6 +18,8 @@ var Item = React.createClass({
 		return {
 			// isFullscreen: false,
 		}
+	},
+	componentWillMount:function(){
 	},
 	componentDidMount:function(){
 

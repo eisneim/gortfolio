@@ -17,7 +17,9 @@ var Grid = React.createClass({
 		
 	},
 	componentDidMount: function(){
-		
+		var wraper = this.getDOMNode();
+		wraper.style.marginLeft="10px";
+		wraper.style.width = (window.innerWidth - 10)+'px';
 	},
 	componentWillUnmount:function(){
 		
@@ -26,6 +28,7 @@ var Grid = React.createClass({
 	render: function(){
 		var self = this;
 		var items = [];
+		// var selectedItem = this.props.routeParams.itemName;
 
 		this.props.items.forEach(function(item,index){
 			var data = self.props.gridData[index] || {};
@@ -36,12 +39,21 @@ var Grid = React.createClass({
 				top: data.top,
 				left: data.left,
 			};
+			var isSelected = self.props.selected == index;
+			if( isSelected ){
+				itemStyle = {
+					width:  '100%',
+					height: '100%',
+					top: '0',
+					left: '0',
+				}
+			}
+
+			var classname = 'gf-grid-item '+ (isSelected?'full-screen':'');
 
 			items.push(
-				<figure className="gf-grid-item" key={'grid-item'+index} style={itemStyle}>
-					<div className="gf-grid-item-inner">
-						{item}
-					</div>
+				<figure className={classname} key={'grid-item'+index} style={itemStyle}>
+					{item}
 				</figure>
 			)
 
