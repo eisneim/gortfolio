@@ -19,7 +19,7 @@ var Grid = React.createClass({
 	componentDidMount: function(){
 		var wraper = this.getDOMNode();
 		wraper.style.marginLeft="10px";
-		wraper.style.width = (window.innerWidth - 30)+'px';
+		wraper.style.width = (window.innerWidth - 20)+'px';
 	},
 	componentWillUnmount:function(){
 		
@@ -41,11 +41,18 @@ var Grid = React.createClass({
 			};
 			var isSelected = self.props.selected == index;
 			if( isSelected ){
+				var trans = 'translate3d(-50%,-'+(window.innerHeight/2)+'px,0)';
 				itemStyle = {
 					width:  '100%',
-					height: '100%',
+					height: window.innerHeight+ 'px',
 					top: '0',
 					left: '0',
+					WebkitTransform: trans,
+					MozTransform: trans,
+					msTransform: trans,
+					OTransform: trans,
+					transform: trans,
+					marginTop: (window.innerHeight/2)+'px',
 				}
 			}
 

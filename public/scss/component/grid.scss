@@ -8,13 +8,27 @@
 		position: absolute;
 		margin:0;
 		padding:0;
-
+		z-index: 0;
+		transform: translate3d(0,0,0);
 		background-color: map-get($color-teal,'500');
 		// transition here
-		transition: top 0.4s linear, left 0.4s linear,width 0.3s linear, height 0.3s linear;
+		transition: top 0.3s linear, left 0.3s linear,width 0.3s linear, height 0.3s linear;
 		&.full-screen{
 			position: fixed;
 			z-index: 10;
+			transform: translate3d(-50%,-50%,0);
+			margin-left: 50%;
+			transition: 
+				top 0.3s  linear, 
+				left 0.3s  linear,
+				width 0.3s 0.3s linear, 
+				height 0.3s 0.3s linear,
+				transform 0.3s   linear,
+				margin-left 0.3s  linear,
+				margin-top 0.3s  linear;
+			// transition: none;
+			// animation: item-morph-in 0.4s ease-out;
+			// animation-fill-mode: forwards;
 			&>a{
 				cursor: normal;
 				pointer-events: none;
@@ -22,3 +36,16 @@
 		}
 	}
 }
+// @keyframes item-morph-in{
+// 	// 0%{
+// 	// 	width: 100%;
+// 	// 	height: 100%;
+// 	// }
+// 	100%{
+// 		top: 0;
+// 		left: 0;
+// 		marg
+// 		width: 100%;
+// 		height: 100%;
+// 	}
+// }

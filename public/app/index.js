@@ -17,7 +17,10 @@ var leaveAnimRoutes = ['intro','about','ideas','contact'];
  * some of the routes need to preload a lot of stuff 
  * so we need to proveide longer route transition animation;
  */
-var longLoadRoutes = ['projects','portfolio'];
+var longLoad = ['projects','portfolio'];
+var noLoadFromThose = ['portfolioItem'];
+
+var previousRoute;
 
 Router.run(routes,function(Handler,state) {
   if(isFirstRun){
@@ -32,7 +35,7 @@ Router.run(routes,function(Handler,state) {
 	*/
  	navActions.toggle('close');
 
- 	if( longLoadRoutes.indexOf( routeName ) > -1 ){
+ 	if( longLoad.indexOf( routeName ) > -1 && noLoadFromThose.indexOf(previousRoute) == -1 ){
  		routeCoverActions.start();
  		longLoadInterceptor(function(){
 
@@ -49,7 +52,10 @@ Router.run(routes,function(Handler,state) {
 
  		React.render(<Handler {...state}/>, document.body );
  	}
-
+  /**
+   * record previus route so we can have more controll;
+   */
+  previousRoute = routeName;
 });
 
 function longLoadInterceptor(callback){

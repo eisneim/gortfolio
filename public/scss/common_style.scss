@@ -1,3 +1,184 @@
+.container{
+  max-width: 1300px;
+  margin: 0 auto;
+}
+.overflow-hidden{
+  overflow: hidden;
+}
+.hide{
+  display:none;
+}
+.no-scroll{
+  overflow:hidden;
+}
+.clearfix{
+  &:before,
+  &:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+  }
+  &:after {
+    clear: both;
+  }
+}
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.pull-right {
+  float: right !important;
+}
+.pull-left {
+  float: left !important;
+}
+.text-left{text-align: left;}
+.text-center{text-align: center;}
+.text-right{text-align: right;}
+.gf-card{
+  background-color: #fff;
+  border-radius: 3px;
+  box-shadow: rgba(0,0,0,0.05) 0 2px 3px 0;
+  // border:solid 1px rgba(0, 0, 0, 0.12);  
+}
+// ------------------------
+ul{
+  padding:0;
+  list-style: none;
+}
+a{
+  color: #333;
+  transition: color 0.3s ease;
+  margin-left:5px;
+  margin-right:5px;
+  text-decoration: none;
+  &:hover,&:focus,&.active{
+    outline: none;
+    // border:none;
+    color: map-get($color-green,'500');
+  }
+}
+// ------------flex box---------
+.flex-conainer{
+  display: flex;
+  &.flex-row{
+    flex-direction: row;
+  }
+  &.flex-column{
+    flex-direction: column;
+  }
+}
+.flex{
+  // flex:1 1 auto;
+  // flex-grow:auto;
+  flex:1;
+  // 用下面参数指定自己的位置
+  // align-self: auto | flex-start | flex-end | center | baseline | stretch;
+}
+// older version, what i used before, put it here 以防万一
+.flex-grid {
+  /*  As of August 2012, only supported in Chrome 21+ */
+  display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -ms-flexbox;      /* TWEENER - IE 10 */
+  display: -webkit-flex;
+  display: flex;
+  min-height: 200px;
+}
+.flex-grid .fluid {
+  -webkit-box-flex: 1;      /* OLD - iOS 6-, Safari 3.1-6 */
+  -moz-box-flex: 1;         /* OLD - Firefox 19- */
+  -webkit-flex: 1;          /* Chrome */
+  -ms-flex: 1; 
+  flex: 1;
+}
+// -----------------
+// -======================================= center an div =============
+  /* This parent can be any width and height */
+  .gf-centered-wraper {
+    text-align: center;
+  }
+  /* The ghost, nudged to maintain perfect centering */
+  .gf-centered-wraper:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -0.25em; /* Adjusts for spacing */
+  }
+
+  /* The element to be centered, can
+     also be of any width and height */ 
+  .gf-centered {
+    display: inline-block;
+    vertical-align: middle;
+    max-width: 95%;
+  }
+
+// ------------flex box---------
+.flex-conainer{
+  display: flex;
+  &.flex-row{
+    flex-direction: row;
+  }
+  &.flex-column{
+    flex-direction: column;
+  }
+}
+.flex{
+  // flex:1 1 auto;
+  // flex-grow:auto;
+  flex:1;
+  // 用下面参数指定自己的位置
+  // align-self: auto | flex-start | flex-end | center | baseline | stretch;
+}
+// older version, what i used before, put it here 以防万一
+.flex-grid {
+  display: flex;
+  min-height: 200px;
+}
+.fluid {
+  flex: 1;
+}
+
+// ----------- scroll bar style ------------
+// ----chrome---------
+// ::-webkit-scrollbar
+// {
+//   width: 10px;  /* for vertical scrollbars */
+//   height: 12px; /* for horizontal scrollbars */
+// }
+
+// ::-webkit-scrollbar-track
+// {
+//   background: rgba(0, 0, 0, 0.06);
+// }
+
+// ::-webkit-scrollbar-thumb
+// {
+//   background: rgba(0, 0, 0, 0.1);
+// }
+
+// -------------
+.avatar{
+  img,svg{
+    width:100%;
+  }
+}
+.close-btn{
+  width:60px;
+  height:60px;
+  display: block;
+  cursor: pointer;
+  background: url('../img/icons/ios7-close-outline-light.svg') center center no-repeat;
+  transition:transform .5s cubic-bezier(.27,1.64,.32,.95);
+  &:hover{
+      transform:rotate(90deg);
+  }
+}
+
+
+
 // --------------------------
 .ua-line-loadin{
   position: relative;

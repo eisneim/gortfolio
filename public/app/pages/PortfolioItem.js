@@ -22,7 +22,7 @@ var Item = React.createClass({
 	componentWillMount:function(){
 	},
 	componentDidMount:function(){
-		
+
 
 	},
 	componentWillUnmount:function(){
@@ -34,7 +34,9 @@ var Item = React.createClass({
 	},
 	render: function(){
 		return (
-			<h1>the portfolio item is: {this.getParams().itemName}</h1>
+			<div className="clearfix">
+				<span>the portfolio item is: {this.getParams().itemName}</span>
+			</div>
 		)
 	}
 });

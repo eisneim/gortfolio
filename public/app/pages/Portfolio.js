@@ -162,6 +162,7 @@ var Portfolio = React.createClass({
 				<Grid items={items} gridData={this.state.gridData}  selected={selected}/>
 				<div id="gf-portfolio-item" className={itemWraperClass}>
 					<RouteHandler {...this.props}/>
+					<a className="close-btn" href="#/portfolio"></a>
 				</div>
 			</section>
 		);
