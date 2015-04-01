@@ -121,19 +121,27 @@ var Portfolio = React.createClass({
 		});
 	},
 	/**
-	 * when portfolio item is selected, route will change and this.render() will fire
-	 * in this function we need to do:
-	 * 1. grab which item is clicked by match the routeParams
-	 * 2. start to load item
-	 * 3. animate the grid item inner wraper to take the whole screen
-	 * 4. fade in the portfoli item
+	 * when portfolio item is selected, page will scroll to top
 	 * @return void
 	 */
-	handleSelect:function(){
+	scrollPosition:function(){
+		var self = this;
+		if(!this.elms || !this.elms.self) return;
+		if(this.lastScrollPosition && this.lastScrollPosition > 200){
+			setTimeout(function(){
+				self.elms.self.scrollTop = self.lastScrollPosition;
+				console.log( self.lastScrollPosition );
+			},100);
+		}
+		
+		if(this.elms.self.scrollTop >= 200){
+			this.lastScrollPosition = this.elms.self.scrollTop;
+		}
 
 	},
 	render: function(){
-		// this.handleSelect();
+		// this.scrollPosition();
+
 		var sectionClasses = 'gf-view';
 		var itemWraperClass = '';
 
