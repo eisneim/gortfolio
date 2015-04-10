@@ -13,9 +13,9 @@ var Grid = React.createClass({
 	// getInitialState:function(){
 		
 	// },
-	componentWillMount: function(){
+	// componentWillMount: function(){
 		
-	},
+	// },
 	componentDidMount: function(){
 		var wraper = this.getDOMNode();
 		wraper.style.marginLeft="10px";
@@ -24,11 +24,17 @@ var Grid = React.createClass({
 	componentWillUnmount:function(){
 		
 	},
-
+	// componentWillReceiveProps:function(nextProps){
+	// 	console.log('next props is:');
+	// 	console.log(nextProps);
+	// },
+	componentDidUpdate:function(){
+		// store last selection so we can do leaving animation:
+		this.lastSelected = this.props.selected;
+	},
 	render: function(){
 		var self = this;
 		var items = [];
-		// var selectedItem = this.props.routeParams.itemName;
 
 		this.props.items.forEach(function(item,index){
 			var data = self.props.gridData[index] || {};
@@ -39,7 +45,9 @@ var Grid = React.createClass({
 				top: data.top,
 				left: data.left,
 			};
-			var isSelected = self.props.selected == index;
+
+			var isSelected  = self.props.selected == index;
+
 			if( isSelected ){
 				var trans = 'translate3d(-50%,-'+(window.innerHeight/2)+'px,0)';
 				itemStyle = {
@@ -47,6 +55,7 @@ var Grid = React.createClass({
 					height: window.innerHeight+ 'px',
 					top: '0',
 					left: '0',
+					zIndex: '10',
 					WebkitTransform: trans,
 					MozTransform: trans,
 					msTransform: trans,
@@ -54,6 +63,10 @@ var Grid = React.createClass({
 					transform: trans,
 					marginTop: (window.innerHeight/2)+'px',
 				}
+			}
+			// this one should leave the sence
+			if(self.lastSelected == index){
+				itemStyle.zIndex = '9';
 			}
 
 			var classname = 'gf-grid-item '+ (isSelected?'full-screen':'');

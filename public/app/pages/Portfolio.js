@@ -15,66 +15,79 @@ var Portfolio = React.createClass({
 		var items = [
 				{
 					name:'1th item',
+					description:'lorem ipsome delo ca deso someca totl esos cess lorem ipsome delo ca deso someca totl esos cess, lorem ipsome delo ca deso someca totl esos cess',
 					url:"item1",
 					img:'http://placehold.it/200x320/227DAC/fff',
 				},
 				{
 					name:'2th item',
+					description:'lorem ipsome delo ca deso someca totl esos cess',
 					url:"item2",
 					img:'http://placehold.it/200x320/A3BB7E/fff',
 				},
 				{
 					name:'3th item',
+					description:'lorem ipsome delo ca deso someca totl esos cess',
 					url:"item3",
 					img:'http://placehold.it/200x320/636aBC/fff',
 				},
 				{
 					name:'4th item',
+					description:'lorem ipsome delo ca deso someca totl esos cess',
 					url:"item4",
 					img:'http://placehold.it/400x320/CC7B5D/fff',
 				},
 				{
 					name:'5th item',
+					description:'lorem ipsome delo ca deso someca totl esos cess',
 					url:"item5",
 					img:'http://placehold.it/400x320/816F7C/fff',
 				},
 				{
 					name:'6th item',
+					description:'lorem ipsome delo ca deso someca totl esos cess',
 					url:"item6",
 					img:'http://placehold.it/500x320/936aBC/fff',
 				},
 				{
 					name:'7th item',
+					description:'lorem ipsome delo ca deso someca totl esos cess',
 					url:"item7",
 					img:'http://placehold.it/200x420/93aFBC/fff',
 				},
 				{
 					name:'8th item',
+					description:'lorem ipsome delo ca deso someca totl esos cess',
 					url:"item8",
 					img:'http://placehold.it/200x420/136FBC/fff',
 				},
 				{
 					name:'9th item',
+					description:'lorem ipsome delo ca deso someca totl esos cess',
 					url:"item9",
 					img:'http://placehold.it/400x320/936FBC/fff',
 				},
 				{
 					name:'10th item',
+					description:'lorem ipsome delo ca deso someca totl esos cess',
 					url:"item10",
 					img:'http://placehold.it/600x320/936FBC/fff',
 				},
 				{
 					name:'11th item',
+					description:'lorem ipsome delo ca deso someca totl esos cess',
 					url:"item11",
 					img:'http://placehold.it/200x550/63D5E7/fff',
 				},
 				{
 					name:'12th item',
+					description:'lorem ipsome delo ca deso someca totl esos cess',
 					url:"item12",
 					img:'http://placehold.it/300x220/236FBC/fff',
 				},
 				{
 					name:'13th item',
+					description:'lorem ipsome delo ca deso someca totl esos cess',
 					url:"item13",
 					img:'http://placehold.it/200x320/EBC575/fff',
 				}
@@ -159,9 +172,13 @@ var Portfolio = React.createClass({
 			var itemid = 'gf-'+item.url;
 
 			items.push(
-				<a id={itemid}  href={'#/portfolio/'+item.url} className="portfolio-item" style={style} >
-					<span>{item.name}</span>
-				</a>
+				<figcaption id={itemid} className="portfolio-item" style={style} >
+					<div className="item-info-wraper">
+						<h2>{item.name}</h2>
+						<p>{item.description}</p>
+					</div>
+					<a href={'#/portfolio/'+item.url}></a>
+				</figcaption>
 			)
 		});
 
