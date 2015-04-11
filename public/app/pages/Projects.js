@@ -4,13 +4,23 @@ var RouteHandler = Router.RouteHandler;
 var Navigation = Router.Navigation;
 var Dragdealer = require('dragdealer').Dragdealer;
 var navActions = require('../actions/navActions.js');
+var request = require('superagent');
+
+var projects = null;
 
 var Projects = React.createClass({
 	mixins: [Navigation,Router.State],
 	statics:{
 		// scen enter animation
 		willTransitionTo: function (transition, params) {
+			// do ajax request
+			request.get('/data/projects.json')
+			.end(function(req,res){
+				projects = res.body;
+				transition.retry();
+			});
 
+			if(!projects) transition.abort();
 		},
 		// leave animation
 		willTransitionFrom: function(transition, component ){
@@ -32,6 +42,7 @@ var Projects = React.createClass({
 		return {
 			// isFullscreen: false,
 			activePorject: this.getParams().projectId,
+			projects: projects,
 			ui:{
 				isFullscreen:false,
 				currentSlide: 0,
@@ -40,7 +51,6 @@ var Projects = React.createClass({
 		}
 	},
 	componentDidMount:function(){
-
 		this.ui = {
 			isFullscreen:false,
 			currentSlide: 0,
@@ -147,7 +157,8 @@ var Projects = React.createClass({
 		this.getDOMNode().classList.add('gf-leave');
 		var self = this;
 		setTimeout(function(){
-			document.getElementById('gf-projects-drag').style.display = 'none';
+			var $drag = document.getElementById('gf-projects-drag');
+			if($drag) $drag.style.display = 'none';
 		},1000);
 	},
 	/**
@@ -158,24 +169,8 @@ var Projects = React.createClass({
 
 	},
 	render: function(){
-		var projects = [{
-				_id:'29423',
-				name:'project1',
-				cover:'images/u12.jpg',
-			},{
-				_id:'6423',
-				name:'project2',
-				cover:'images/u2.jpg',
-			},{
-				_id:'4243423',
-				name:'project3',
-				cover:'images/u3.jpg',
-			},{
-				_id:'133',
-				name:'project4',
-				cover:'images/u4.jpg',
-			}
-		];
+		var projects = this.state.projects;
+
 		var projectElms = [];
 		projects.forEach(function(pp ,index ){
 			var projectStyle = {

@@ -5,6 +5,7 @@ var routes = require('./routes.js');
 
 var navActions = require('./actions/navActions.js');
 var routeCoverActions = require('./actions/routeCoverActions.js');
+var request = require('superagent');
 
 var isFirstRun = true;
 
@@ -19,6 +20,11 @@ var leaveAnimRoutes = ['intro','about','ideas','contact'];
  */
 var longLoad = ['projects','portfolio'];
 var noLoadFromThose = ['portfolioItem'];
+
+var loadUrl = {
+  projects: '/data/projects.json',
+  portfolio: '/data/portfolio.json',
+}
 
 var previousRoute;
 
@@ -37,17 +43,19 @@ Router.run(routes,function(Handler,state) {
 
  	if( longLoad.indexOf( routeName ) > -1 && noLoadFromThose.indexOf(previousRoute) == -1 ){
  		routeCoverActions.start();
- 		longLoadInterceptor(function(){
+ 		longLoadInterceptor( routeName, function(req,res){
 
  			routeCoverActions.finish();
 			React.render(<Handler {...state}/>, document.body );
 
  		});
+
  	}else if( leaveAnimRoutes.indexOf( routeName ) > -1 ){ 
  		document.querySelector('.gf-view').classList.add('fade-out');
  		setTimeout(function(){
  			React.render(<Handler {...state}/>, document.body );
  		},300);
+
  	}else{
 
  		React.render(<Handler {...state}/>, document.body );
@@ -58,6 +66,6 @@ Router.run(routes,function(Handler,state) {
   previousRoute = routeName;
 });
 
-function longLoadInterceptor(callback){
+function longLoadInterceptor(routeName , callback){
 	setTimeout(callback,800);
 }
