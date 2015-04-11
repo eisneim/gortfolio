@@ -20,7 +20,7 @@ module.exports = (
         <Route name="portfolioItem" path=":itemName" handler={PortfolioItem}/>
     </Route>
     <Route name='projects' path='/project' handler={Projects} >
-      <Route name="project" path=":projectId" handler={Project}/>
+      <Route name="project" path=":projectUrl" handler={Project}/>
     </Route>
     <Route name='ideas' path='/idea' handler={Ideas} />
     <Route name='contact' path='/contact' handler={Contact} />

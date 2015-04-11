@@ -22,11 +22,13 @@ var leaveAnimRoutes = ['intro','about','ideas','contact'];
  * so we need to proveide longer route transition animation;
  */
 var longLoad = ['projects','portfolio'];
-var noLoadFromThose = ['portfolioItem'];
+var noLoadFromThose = ['portfolioItem','project'];
 
 var loadUrl = {
   projects: '/data/projects.json',
   portfolio: '/data/portfolio.json',
+  project: '/data/projects.json',
+  portfolioItem: '/data/portfolio.json',
 }
 
 var previousRoute;
@@ -69,7 +71,10 @@ Router.run(routes,function(Handler,state) {
  		setTimeout(function(){
  			React.render(<Handler {...state}/>, document.body );
  		},300);
-
+  }else if( loadUrl[routeName] ){ 
+    request.get( loadUrl[routeName] ).end(function(req,res){
+      React.render(<Handler {...state} preload={res.body}/>, document.body );
+    });
  	}else{
 
  		React.render(<Handler {...state}/>, document.body );

@@ -17,34 +17,34 @@ var Projects = React.createClass({
 		// leave animation
 		willTransitionFrom: function(transition, component ){
 			// close side navigation;
-			navActions.toggle('close');
-			// start leave animation;
-			component.leaveSence();
+			// navActions.toggle('close');
+			// // start leave animation;
+			// component.leaveSence();
 
-			setTimeout(function(){
-			 	component.leaveAnimationDone = true;
-			 	transition.retry();
-			 },500);
-			if(!component.leaveAnimationDone){
-				transition.abort();
-			}
+			// setTimeout(function(){
+			//  	component.leaveAnimationDone = true;
+			//  	transition.retry();
+			//  },500);
+			// if(!component.leaveAnimationDone){
+			// 	transition.abort();
+			// }
 		},
 	},
 	getInitialState:function(){
 		return {
-			// isFullscreen: false,
-			activePorject: this.getParams().projectId,
+			// showAll: false,
 			projects: this.props.preload,
 			ui:{
-				isFullscreen:false,
+				showAll:false,
 				currentSlide: 0,
 			}
 
 		}
 	},
 	componentDidMount:function(){
+
 		this.ui = {
-			isFullscreen:false,
+			showAll:false,
 			currentSlide: 0,
 		},
 		this.elm = {
@@ -55,6 +55,10 @@ var Projects = React.createClass({
 
 		this._initDrag();
 		this._initEvents();
+
+		// if(this.state.activePorject){
+		// 	this.showProject();
+		// }
 	},
 	componentWillUnmount:function(){
 		document.removeEventListener( 'keydown',  this.keyEventHandler );
@@ -82,16 +86,16 @@ var Projects = React.createClass({
 	_initEvents:function(){
 		var self = this;
 		this.elm.slides.forEach( function( slide ) {
-			// clicking the slides when not in isFullscreen mode
+			// clicking the slides when not in showAll mode
 			slide.addEventListener( 'click', function(e) {
 				if(e.target.tagName == 'A') {
 					if( e.target.className.indexOf('gf-project-link') > -1 ){
-						self.showProject();
+						// self.showProject();
 					}
 					return;	
 				} 
 
-				if( !self.ui.isFullscreen || self.dd.activity ) return false;
+				if( !self.ui.showAll || self.dd.activity ) return false;
 				
 				if( self.elm.slides.indexOf( slide ) === (self.ui.currentSlide) ) {
 					self.onToggleView();
@@ -105,16 +109,22 @@ var Projects = React.createClass({
 			var keyCode = ev.keyCode || ev.which,
 				currentSlide = self.elm.slides[ self.ui.currentSlide ];
 
-
 			switch (keyCode) {
 				case 40: // down key
-					if( self.ui.isFullscreen ) return;
+					if( self.ui.showAll ){
+						// should to to poject page:
+						self.transitionTo('project',{
+							projectUrl: self.props.preload[ self.ui.currentSlide ].url,
+						});
+
+						return;
+					};
 					self.onToggleView( currentSlide );
 					break; 
 				 //up
 				case 38:
 					// if not fullscreen don't reveal the content. If you want to navigate directly to the content then remove this check.
-					if( !self.ui.isFullscreen ) return;
+					if( !self.ui.showAll ) return;
 					self.onToggleView( currentSlide );
 					break;
 					// left;
@@ -141,17 +151,36 @@ var Projects = React.createClass({
 		setTimeout(function(){
 			that.dd.reflow();
 			that.dd.enable();
-			that.ui.isFullscreen = !that.ui.isFullscreen;
+			that.ui.showAll = !that.ui.showAll;
 		},520);
+	},
+	componentDidUpdate:function(){
+		var self = this;
+		// recalculate for dragdealer
+		setTimeout(function(){
+			self.dd.reflow();
+		},520);
+
+		if( this.getParams().projectUrl ){
+			this.getDOMNode().classList.add('gf-leave')
+			// remove event handler
+			document.removeEventListener( 'keydown',  this.keyEventHandler );
+
+		}else{
+			this.getDOMNode().classList.remove('gf-leave')
+			document.addEventListener( 'keydown',  this.keyEventHandler );
+		}
+
 	},
 	leaveSence:function(){
 		// this.elm.dragwraper.style.transform = 'translateX(-'+( that.ui.currentSlide /that.elm.slides.length * 100)+'%)';
-		this.getDOMNode().classList.add('gf-leave');
-		var self = this;
-		setTimeout(function(){
-			var $drag = document.getElementById('gf-projects-drag');
-			if($drag) $drag.style.display = 'none';
-		},1000);
+		
+		// this.getDOMNode().classList.add('gf-leave');
+		// var self = this;
+		// setTimeout(function(){
+		// 	var $drag = document.getElementById('gf-projects-drag');
+		// 	if($drag) $drag.style.display = 'none';
+		// },1000);
 	},
 	/**
 	 * show a specific project and hide dragable gird;
@@ -161,40 +190,46 @@ var Projects = React.createClass({
 
 	},
 	render: function(){
-		var projects = this.state.projects;
+		var self = this;
+		var projects = this.props.preload;
 
 		var projectElms = [];
+		var selectedProject = null;
+		var activePorject = this.getParams().projectUrl;
+
 		projects.forEach(function(pp ,index ){
 			var projectStyle = {
 				'backgroundImage': 'url('+pp.cover+')',
 				'width': (100/projects.length)+'%'
 			};
+
+			if( activePorject == pp.url ) selectedProject = projects[index];
+
 			projectElms.push( 
 				<div data-index={index} key={'project'+index} className="gf-project-holder" style={projectStyle}>
 					<div className="gf-project-info">
-						<h1>{pp.name}</h1>
+						<h1><a href={ '#/project/'+pp.url }>{pp.name}</a></h1>
 						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum sapiente ducimus veritatis dolorem, id tenetur dolores ex natus quis nihil laboriosam ut earum, provident atque, esse possimus? Laborum, nostrum, consequatur.</p>
 					</div>
 					<div className="gf-project-title">
 						<h1>{pp.name}</h1>
-						<a className="gf-project-link" href={ '#/project/'+pp._id }></a>
+						<a className="gf-project-link" href={ '#/project/'+pp.url }></a>
 					</div>
 				</div>
 			)
 		});
 
 		return (
-			<section className="gf-view" id="gf-projects">
+			<section className='gf-view' id="gf-projects">
 				<a id="gf-projects-switch" onClick={this.onToggleView}></a>
-				<div id="gf-projects-drag" className="dragdealer">
-					<div id="gf-projects-wraper" className="handle" style={{'width': (projects.length*100)+'%','transformStyle': 'preserve-3d' }}>
-						{projectElms}
+				<div id="gf-projects-drag-wrap">
+					<div id="gf-projects-drag" className="dragdealer">
+						<div id="gf-projects-wraper" className="handle" style={{'width': (projects.length*100)+'%','transformStyle': 'preserve-3d' }}>
+							{projectElms}
+						</div>
 					</div>
 				</div>
-				
-				<div id="gf-project">
-					<RouteHandler {...this.props}/>
-				</div>
+				<RouteHandler {...this.props} projectData={selectedProject} />
 			</section>
 		)
 	}

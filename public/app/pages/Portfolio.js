@@ -15,13 +15,13 @@ var Portfolio = React.createClass({
 	getInitialState: function(){
 		var items = this.props.preload;
 
-		self.grid = gridSvc({
+		this.grid = gridSvc({
 			gridWidth: window.innerWidth - 40,
 			minItemWidth:280,
 			itemLength: items.length,
 		});
 
-		var gridData =  self.grid.fill();
+		var gridData =  this.grid.fill();
 		return {
 			items: items,
 			gridData: gridData,
