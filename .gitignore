@@ -17,5 +17,3 @@ node_modules
 public/vendor/
 public/build/
 public/css/*.css
-
-public/images/

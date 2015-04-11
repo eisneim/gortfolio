@@ -161,19 +161,19 @@ var Projects = React.createClass({
 		var projects = [{
 				_id:'29423',
 				name:'project1',
-				cover:'images/1.jpg',
+				cover:'images/u12.jpg',
 			},{
 				_id:'6423',
 				name:'project2',
-				cover:'images/2.jpg',
+				cover:'images/u2.jpg',
 			},{
 				_id:'4243423',
 				name:'project3',
-				cover:'images/3.jpg',
+				cover:'images/u3.jpg',
 			},{
 				_id:'133',
 				name:'project4',
-				cover:'images/1.jpg',
+				cover:'images/u4.jpg',
 			}
 		];
 		var projectElms = [];

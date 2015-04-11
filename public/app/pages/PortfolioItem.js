@@ -33,9 +33,19 @@ var Item = React.createClass({
 		// this.getDOMNode().classList.add('gf-leave');
 	},
 	render: function(){
+		var item = this.props.item || {};
+		var headerStyle = {
+			backgroundImage: 'url('+item.cover+')',
+			width:100+'%',
+			height: 100+'vh',
+		}
+
 		return (
-			<div className="clearfix">
-				<span>the portfolio item is: {this.getParams().itemName}</span>
+			<div className="clearfix" className="gf-portfolio-item-wrap">
+				<header style={headerStyle}></header>
+				<div role="main" className="portfolio-content clearfix">
+					<div dangerouslySetInnerHTML={{__html: item.content }} ></div>
+				</div>
 			</div>
 		)
 	}

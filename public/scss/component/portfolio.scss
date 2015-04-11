@@ -35,8 +35,29 @@
 		transition: visibility 0s 0.8s,opacity 0.4s 0.8s;
 	}
 	&>.close-btn{
-		position: absolute;
+		position: fixed;
 		top: 30px;
 		right: 120px;
+	}
+	header{
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: center center;
+		// background-attachment: fixed;
+		margin:0;
+		padding:0;
+	}
+	.portfolio-content{
+		background-color: #fff;
+		color: #666;
+		font-size: 20px;
+		h1{font-size:2.5em;}
+		h2{font-size:2.1em;}
+		h3{font-size:1.8em;}
+		h4{font-size:1.5em;}
+		h5{font-size:1.2em;}
+		img{
+			max-width: 100%;
+		}
 	}
 }

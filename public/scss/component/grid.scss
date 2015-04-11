@@ -84,9 +84,10 @@
 		width: 100%;
 		font-size: 40px;
 		font-weight: bold;
-		color: #484c61;
-		-webkit-transition: -webkit-transform 0.35s, color 0.35s;
-		transition: transform 0.35s, color 0.35s;
+		// color: #fff;
+		opacity:0;
+		-webkit-transition: -webkit-transform 0.35s, opacity 0.35s;
+		transition: transform 0.35s, opacity 0.35s;
 		-webkit-transform: translate3d(0,-50%,0);
 		transform: translate3d(0,-50%,0);
 	}
@@ -110,6 +111,7 @@
 
 	&:hover h2 {
 		color: #fff;
+		opacity:1;
 		-webkit-transform: translate3d(0,-50%,0) translate3d(0,-40px,0);
 		transform: translate3d(0,-50%,0) translate3d(0,-40px,0);
 	}

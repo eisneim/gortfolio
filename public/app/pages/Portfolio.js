@@ -17,79 +17,105 @@ var Portfolio = React.createClass({
 					name:'1th item',
 					description:'lorem ipsome delo ca deso someca totl esos cess lorem ipsome delo ca deso someca totl esos cess, lorem ipsome delo ca deso someca totl esos cess',
 					url:"item1",
-					img:'http://placehold.it/200x320/227DAC/fff',
+					thumbnail:'/images/u1.jpg',
+					cover:'/images/u1.jpg',
+					content:'<div role="main" class="container"><p> 半路出家自学搬砖，工头最近管得松，特借此机会录搬砖之法以供分享，鄙人毕业不久水平很菜，还望各路高手手下留情 别把我拍死了。。。。</p><h3>教程的几个章节：</h3><ul><li>1.初识ReactJS(讲的太烂，直接跳过吧....)</li><li>2.第一个组件hellow world</li><li>3.组件的嵌套</li><li>4.组件的状态state</li><li>5.组件的参数props</li><li>6.事件events</li><li>7.指向ref</li><li>8.双向数据流</li><li>9.组件生命周期</li><li>10.mixin</li><li>11.1 开发环境和工具</li><li>11.2 分成小组件</li><li>11.3 添加功能</li><li>12.结尾</li></ul><p><a href="http://pan.baidu.com/s/1sjoeLe125">百度网盘</a><a href="http://pan.baidu.com/s/1pJJqYWN12">打包下载</a></p><p>如果大家觉得有用，我讲继续录React+flux+react-router的教程，或许会加上relay，graphQL(如果时间来得及的话)</p><h3>教程最后要实现的app：</h3><p><img src="/images/u1.jpg" alt="react.js中文视频教程"></p><ol class="post-nav"><a href="/articles/2015-1-1-new_year_plan.html" class="post-next">2015年的计划</a></ol></div>',
 				},
 				{
 					name:'2th item',
 					description:'lorem ipsome delo ca deso someca totl esos cess',
 					url:"item2",
-					img:'http://placehold.it/200x320/A3BB7E/fff',
+					thumbnail:'/images/u2.jpg',
+					cover:'/images/u2.jpg',
+					content:'<h1>this is some conent</h1>',
 				},
 				{
 					name:'3th item',
 					description:'lorem ipsome delo ca deso someca totl esos cess',
 					url:"item3",
-					img:'http://placehold.it/200x320/636aBC/fff',
+					thumbnail:'/images/u3.jpg',
+					cover:'/images/u3.jpg',
+					content:'<h1>this is some conent</h1>',
 				},
 				{
 					name:'4th item',
 					description:'lorem ipsome delo ca deso someca totl esos cess',
 					url:"item4",
-					img:'http://placehold.it/400x320/CC7B5D/fff',
+					thumbnail:'/images/u4.jpg',
+					cover:'/images/u4.jpg',
+					content:'<h1>this is some conent</h1>',
 				},
 				{
 					name:'5th item',
 					description:'lorem ipsome delo ca deso someca totl esos cess',
 					url:"item5",
-					img:'http://placehold.it/400x320/816F7C/fff',
+					thumbnail:'/images/u5.jpg',
+					cover:'/images/u5.jpg',
+					content:'<h1>this is some conent</h1>',
 				},
 				{
 					name:'6th item',
 					description:'lorem ipsome delo ca deso someca totl esos cess',
 					url:"item6",
-					img:'http://placehold.it/500x320/936aBC/fff',
+					thumbnail:'/images/u6.jpg',
+					cover:'/images/u6.jpg',
+					content:'<h1>this is some conent</h1>',
 				},
 				{
 					name:'7th item',
 					description:'lorem ipsome delo ca deso someca totl esos cess',
 					url:"item7",
-					img:'http://placehold.it/200x420/93aFBC/fff',
+					thumbnail:'/images/u7.jpg',
+					cover:'/images/u7.jpg',
+					content:'<h1>this is some conent</h1>',
 				},
 				{
 					name:'8th item',
 					description:'lorem ipsome delo ca deso someca totl esos cess',
 					url:"item8",
-					img:'http://placehold.it/200x420/136FBC/fff',
+					thumbnail:'/images/u8.jpg',
+					cover:'/images/u8.jpg',
+					content:'<h1>this is some conent</h1>',
 				},
 				{
 					name:'9th item',
 					description:'lorem ipsome delo ca deso someca totl esos cess',
 					url:"item9",
-					img:'http://placehold.it/400x320/936FBC/fff',
+					thumbnail:'/images/u9.jpg',
+					cover:'/images/u9.jpg',
+					content:'<h1>this is some conent</h1>',
 				},
 				{
 					name:'10th item',
 					description:'lorem ipsome delo ca deso someca totl esos cess',
 					url:"item10",
-					img:'http://placehold.it/600x320/936FBC/fff',
+					thumbnail:'/images/u10.jpg',
+					cover:'/images/u10.jpg',
+					content:'<h1>this is some conent</h1>',
 				},
 				{
 					name:'11th item',
 					description:'lorem ipsome delo ca deso someca totl esos cess',
 					url:"item11",
-					img:'http://placehold.it/200x550/63D5E7/fff',
+					thumbnail:'/images/u11.jpg',
+					cover:'/images/u11.jpg',
+					content:'<h1>this is some conent</h1>',
 				},
 				{
 					name:'12th item',
 					description:'lorem ipsome delo ca deso someca totl esos cess',
 					url:"item12",
-					img:'http://placehold.it/300x220/236FBC/fff',
+					thumbnail:'/images/u12.jpg',
+					cover:'/images/u12.jpg',
+					content:'<h1>this is some conent</h1>',
 				},
 				{
 					name:'13th item',
 					description:'lorem ipsome delo ca deso someca totl esos cess',
 					url:"item13",
-					img:'http://placehold.it/200x320/EBC575/fff',
+					thumbnail:'/images/u13.jpg',
+					cover:'/images/u13.jpg',
+					content:'<h1>this is some conent</h1>',
 				}
 			];
 
@@ -166,7 +192,7 @@ var Portfolio = React.createClass({
 
 		this.state.items.forEach(function(item,index){
 			var style = {
-				backgroundImage: 'url('+item.img+')',
+				backgroundImage: 'url('+item.thumbnail+')',
 			};
 			if(item.url == selectedItem) selected = index;
 			var itemid = 'gf-'+item.url;
@@ -186,7 +212,7 @@ var Portfolio = React.createClass({
 			<section className={sectionClasses} id="gf-portfolio">
 				<Grid items={items} gridData={this.state.gridData}  selected={selected}/>
 				<div id="gf-portfolio-item" className={itemWraperClass}>
-					<RouteHandler {...this.props}/>
+					<RouteHandler {...this.props} item={this.state.items[selected]}/>
 					<a className="close-btn" href="#/portfolio"></a>
 				</div>
 			</section>
