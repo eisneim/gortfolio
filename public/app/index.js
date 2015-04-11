@@ -6,7 +6,10 @@ var routes = require('./routes.js');
 var navActions = require('./actions/navActions.js');
 var routeCoverActions = require('./actions/routeCoverActions.js');
 var request = require('superagent');
-
+/**
+ *  first run don't have anything rendered on page, so it is special,
+ *  we can do some initial load animation
+ */
 var isFirstRun = true;
 
 /**
@@ -27,26 +30,37 @@ var loadUrl = {
 }
 
 var previousRoute;
+/**
+ * we have route transtion animation on long load routes,
+ * for those routes: 
+ *   when route change start ,start a timer that have the shortest lenght to finish animation
+ *   shouldRouteTransionDone == true only when both animtion and xhr request both finished
+ */
+var xhrLoadDone,routeAnimationDone;
 
 Router.run(routes,function(Handler,state) {
-  if(isFirstRun){
-  	React.render(<Handler {...state}/>, document.body );
-  	isFirstRun = false;
-  	return;
-  }
   var routeName = state.routes[ state.routes.length-1 ].name ;
-  // console.log(state);
+  
 	/**
 	* 每当路由改变，这里都会运行一次，可以在这里检查那些需要载入动画，以及关闭侧栏；
 	*/
  	navActions.toggle('close');
 
  	if( longLoad.indexOf( routeName ) > -1 && noLoadFromThose.indexOf(previousRoute) == -1 ){
- 		routeCoverActions.start();
- 		longLoadInterceptor( routeName, function(req,res){
+    var preloadedData;
 
- 			routeCoverActions.finish();
-			React.render(<Handler {...state}/>, document.body );
+ 		routeCoverActions.start();
+    // set a minimal length to make sure animation is done;
+    setTimeout( function(){
+      routeAnimationDone = true;
+      renderLongLoadRoute(Handler,state,preloadedData);
+    }, isFirstRun?0:900)
+
+ 		longLoadInterceptor( routeName, function(req,res){
+      preloadedData = res.body;
+
+      xhrLoadDone = true;
+			renderLongLoadRoute(Handler,state,preloadedData);
 
  		});
 
@@ -64,8 +78,25 @@ Router.run(routes,function(Handler,state) {
    * record previus route so we can have more controll;
    */
   previousRoute = routeName;
+  if(isFirstRun) isFirstRun = false;
 });
 
 function longLoadInterceptor(routeName , callback){
-	setTimeout(callback,800);
+  var url = loadUrl[routeName];
+  if(url){
+    request.get(url).end(callback)
+  }else{
+    setTimeout(callback,800);
+  }
+}
+
+function renderLongLoadRoute(Handler,state, preloadedData){
+  if( xhrLoadDone && routeAnimationDone) {
+    React.render(<Handler {...state} preload={preloadedData }/>, document.body );
+    // hide animation;
+    routeCoverActions.finish();
+    // for next route cahgne
+    xhrLoadDone = false;
+    routeAnimationDone = false;
+  }
 }

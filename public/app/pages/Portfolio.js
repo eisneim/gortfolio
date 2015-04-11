@@ -13,9 +13,18 @@ var Portfolio = React.createClass({
 		Router.State 
 	],
 	getInitialState: function(){
+		var items = this.props.preload;
+
+		self.grid = gridSvc({
+			gridWidth: window.innerWidth - 40,
+			minItemWidth:280,
+			itemLength: items.length,
+		});
+
+		var gridData =  self.grid.fill();
 		return {
-			items: [],
-			gridData:[],
+			items: items,
+			gridData: gridData,
 		}
 	},
 	componentWillMount: function(){
@@ -31,26 +40,6 @@ var Portfolio = React.createClass({
 			self: this.getDOMNode(),
 			portfolioItem: document.getElementById('gf-portfolio-item'),
 		}
-		// let's do ajax request
-		console.log(' should start the request')
-		request
-		.get('/data/portfolio.json')
-		.end(function(req,res){
-			var items = res.body;
-
-			self.grid = gridSvc({
-				gridWidth: window.innerWidth - 40,
-				minItemWidth:280,
-				itemLength: items.length,
-			});
-
-			var gridData =  self.grid.fill();
-
-			self.setState({
-				items: items,
-				gridData: gridData,
-			})
-		})
 	},
 	componentWillUnmount:function(){
 		// remove grid resize listener

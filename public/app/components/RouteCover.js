@@ -69,12 +69,13 @@ var RouteCover = React.createClass({
 				if(index < that.startPoints.length ){
 					// return anim();
 					setTimeout(anim , 50 );
-				}else{
-					// done
-					routeCoverStore.setState('isAnimating',false );
-					// call finish
-					routeCoverActions.finish(  );
 				}
+				// else{
+				// 	// done
+				// 	routeCoverStore.setState('isAnimating',false );
+				// 	// call finish
+				// 	routeCoverActions.finish(  );
+				// }
 
 			} );
 		}

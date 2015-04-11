@@ -74,7 +74,7 @@ h1,h2,h3,h4,h5,*{
   // background-color: map-get($color-teal,'500');
   background-color: #fff;
   // background-color:$blue_grey;
-  color: #fff;
+  // color: #fff;
   // box-shadow: -2px 0 6px rgba(0,0,0,0.1);
   z-index: $index-nav;
 
@@ -89,6 +89,7 @@ h1,h2,h3,h4,h5,*{
       margin-bottom: 0.2em;
     }
   }
+
 }
 #gf-nav-backdrop{
   position: absolute;
@@ -101,10 +102,15 @@ h1,h2,h3,h4,h5,*{
   z-index: 100;
   cursor: e-resize;
 }
-#gf-nav-social-link{
-  width: 100%;
+#gf-nav-bottom{
+  text-align: center;
   position:absolute;
   bottom:0;
+  z-index: 5;
+  color: #999;
+}
+#gf-nav-social-link{
+  width: 100%;
   // text-align: center;
   li{
     display: inline-block;
@@ -120,6 +126,9 @@ h1,h2,h3,h4,h5,*{
     }
     #gf-nav-backdrop{
       visibility:visible
+    }
+    #gf-nav-bottom{
+      left:-60px;
     }
 }
 // ------------------ nav triangle svg

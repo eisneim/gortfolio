@@ -13,14 +13,6 @@ var Projects = React.createClass({
 	statics:{
 		// scen enter animation
 		willTransitionTo: function (transition, params) {
-			// do ajax request
-			request.get('/data/projects.json')
-			.end(function(req,res){
-				projects = res.body;
-				transition.retry();
-			});
-
-			if(!projects) transition.abort();
 		},
 		// leave animation
 		willTransitionFrom: function(transition, component ){
@@ -42,7 +34,7 @@ var Projects = React.createClass({
 		return {
 			// isFullscreen: false,
 			activePorject: this.getParams().projectId,
-			projects: projects,
+			projects: this.props.preload,
 			ui:{
 				isFullscreen:false,
 				currentSlide: 0,

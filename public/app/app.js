@@ -40,10 +40,14 @@ var App = React.createClass({
 	    			<li><a href="http://blog.eisneim.com" target="_blank">Blog</a></li>
 	    			<li><Link to="contact">Contact</Link></li>
 	    		</ul>
-	    		<ul id="gf-nav-social-link">
-	    			<li><a href="#">Weibo</a></li>
-	    			<li><a href="#">Github</a></li>
-	    		</ul>
+	    		<div id="gf-nav-bottom">
+	    			<ul id="gf-nav-social-link">
+	    				<li><a href="http://github.com/eisneim" target="_blank">Github</a></li>
+	    				<li><a href="http://weibo.com/eineim" target="_blank">Weibo</a></li>
+	    				<li><a href="http://www.zhihu.com/people/eisneim" target="_blank">知乎</a></li>
+	    			</ul>
+	    			<p>Designed with <span style={{color:"#F0696C"}}>❤</span> by <a href="http://eisneim.com">Eisneim</a>, this site is opensourced on <a href="https://github.com/eisneim/gortfolio" target="_blank">github</a></p>
+	    		</div>
 	    		<div id="nav-svg-wrap" dangerouslySetInnerHTML={{__html: navSvg }}></div>
 	    	</nav>
 	    	<Navtoggle />
