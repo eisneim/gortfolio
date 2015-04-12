@@ -176,7 +176,16 @@ a{
       transform:rotate(90deg);
   }
 }
-
+.cover-mat{
+  width:100%;
+  height:100%;
+  // background-color: rgba(42,46,57,0.7);
+  background:rgba(42,46,57,0.1) url(../img/pattern.png);
+  position:absolute;
+  top: 0;
+  left:0;
+  z-index: 2;
+}
 
 
 // --------------------------
@@ -374,3 +383,5 @@ a{
     opacity: 0;
   }
 }
+
+// ---------------------

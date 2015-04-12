@@ -2,6 +2,10 @@
 var Typer = require('../components/Typer.js');
 
 var Intro = React.createClass({
+	// componentDidMount:function(){
+	// 	// let's insert our big backgournd video;
+
+	// },
 	render: function(){
 		return (
 			<section className="gf-view" id="gf-intro">
@@ -17,7 +21,12 @@ var Intro = React.createClass({
 						<a className="btn btn-ghost btn-lg" href="#/portfolio"> My Portfolio →</a>
 					</header>
 				</div>
-				
+				<div className="cover-mat"></div>
+				<video id="video_background" autoPlay="true" preload="auto" loop="loop" muted="muted" volume="0">
+					<source src="video/splash.webm" type="video/webm"/> 
+					<source src="video/splash.mp4" type="video/mp4"/> 
+					your browser is way too old!
+				</video>
 			</section>
 		)
 	}

@@ -1,10 +1,12 @@
 #gf-intro{
 	background-color: $darker_blue ;
-	background-image: url('../img/cover/woods_dim.jpg');
+	background-image: url('../img/cover/intro.jpg');
 	background-position: center center;
 	background-repeat: no-repeat;
 	background-size: cover;
 	.gf-centered-wraper{
+		position:relative;
+		z-index: 3;
 		height: 100%;
 		max-width:800px;
 		width: 90%;
@@ -28,4 +30,16 @@
 			margin: 0;
 		}
 	}
+	#video_background {
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		min-width: 100%;
+		min-height: 100%;
+		width: auto;
+		height: auto;
+		// z-index: -1000;
+		overflow: hidden;
+	}
 }
+
