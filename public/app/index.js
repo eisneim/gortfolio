@@ -67,7 +67,8 @@ Router.run(routes,function(Handler,state) {
  		});
 
  	}else if( leaveAnimRoutes.indexOf( routeName ) > -1 ){ 
- 		document.querySelector('.gf-view').classList.add('fade-out');
+    var $view = document.querySelector('.gf-view');
+ 		if($view) $view.classList.add('fade-out');
  		setTimeout(function(){
  			React.render(<Handler {...state}/>, document.body );
  		},300);

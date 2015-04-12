@@ -1,3 +1,44 @@
 #gf-about{
+	#gf-about-portrait{
+		height:100%;
+		width:100%;
+		max-width: 600px;
+
+	}
+	#gf-about-text{
+		height:100%;
+		width: 100%;
+		max-width: 800px;
+		position:absolute;
+		right:0;
+		top:0;
+		overflow-y: auto;
+		padding: 100px 30px 0 10px;
+		font-weight: normal;
+		font-size: 20px;
+		// color: map-get($color-brown,'400');
+		p{
+			margin-top: 0;
+			margin-bottom: 1em;
+			line-height: 1.3em;
+		}
+		a{
+			text-decoration: underline;
+			color: map-get($color-blue-grey,'200');
+		}
+		.btn{text-decoration: none;}
+		em{
+			font-weight: bold;
+		}
+	}
+	.small-title{
+		text-transform: uppercase;
+		font-weight: bold;
+		margin-top: 1.8em;
+		margin-bottom: 0;
+		color: map-get($color-blue-grey,'500');
+		// color: map-get($color-brown,'400');
+		font-size: 18px;
+	}
 
 }
