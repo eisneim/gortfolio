@@ -39,9 +39,8 @@ I record and share free video tutorials as well, you can find them on <a href="h
 						<em>Web ServerSide</em>: Node.JS, Golang, MongoDB, PHP <br/>
 						<em>Web ClientSide</em>: Angular.JS, React.JS, SVG, CSS3, HTML5 <br/>
 					</p>
-					
-					<a className="btn btn-ghost" href="#/contact">Stay in touch →</a>
 
+					<a className="btn btn-ghost" href="#/contact">Stay in touch →</a>
 
 				</div>
 			</section>

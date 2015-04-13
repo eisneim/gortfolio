@@ -25,10 +25,10 @@ var longLoad = ['projects','portfolio'];
 var noLoadFromThose = ['portfolioItem','project'];
 
 var loadUrl = {
-  projects: '/data/projects.json',
-  portfolio: '/data/portfolio.json',
-  project: '/data/projects.json',
-  portfolioItem: '/data/portfolio.json',
+  projects: 'data/projects.json',
+  portfolio: 'data/portfolio.json',
+  project: 'data/projects.json',
+  portfolioItem: 'data/portfolio.json',
 }
 
 var previousRoute;

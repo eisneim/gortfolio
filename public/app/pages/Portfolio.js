@@ -5,7 +5,10 @@ var RouteHandler = Router.RouteHandler;
 var gridSvc = require('../service/gridSvc.js');
 var _ = require('lodash');
 var request = require('superagent');
-
+/**
+ * TODO:
+ * 1.filter by type: video,illustration,design etc.
+ */
 
 var Portfolio = React.createClass({
 	mixins: [ 
