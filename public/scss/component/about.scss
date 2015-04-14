@@ -1,4 +1,6 @@
 #gf-about{
+	background: url(../img/cover/portrait.jpg) top right no-repeat;
+	background-size: cover;
 	#gf-about-portrait{
 		height:100%;
 		width:100%;
@@ -8,12 +10,12 @@
 	#gf-about-text{
 		height:100%;
 		width: 100%;
-		max-width: 800px;
+		max-width: 900px;
 		position:absolute;
-		right:0;
+		left:0;
 		top:0;
 		overflow-y: auto;
-		padding: 100px 30px 0 10px;
+		padding: 100px 30px 0 60px;
 		font-weight: normal;
 		font-size: 20px;
 		// color: map-get($color-brown,'400');
@@ -24,7 +26,7 @@
 		}
 		a{
 			text-decoration: underline;
-			color: map-get($color-blue-grey,'200');
+			color: map-get($color-amber,'400');
 		}
 		.btn{text-decoration: none;}
 		em{

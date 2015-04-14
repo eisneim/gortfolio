@@ -16,6 +16,7 @@ var About = React.createClass({
 				<div id="gf-about-portrait"></div>
 
 				<div id="gf-about-text">
+					<h1>ABOUT.ME.</h1>
 					<h4 className="small-title">GREETINGS.</h4>
 					<p>Hi there. I am Eisneim Terry(made in 1991), Shanghai based Digital artist & Developer. I'm currently work at startup project <a href="http://org.xinpingzi.com" target="_blank">xinpingzi.com</a> as lead web developer. 
 					And, here <a href="http://eisneim.com">eisneim.com</a> is my personal space to memorize my workpieces and memories of the enjoyment of creating beautiful things.
@@ -37,7 +38,7 @@ I record and share free video tutorials as well, you can find them on <a href="h
 					<p>
 						<em>Design & Motion & VFX</em>:  After Effects, Cinema 4D, Illustrator, Photoshop, MochaPro, Premiere  <br/>
 						<em>Web ServerSide</em>: Node.JS, Golang, MongoDB, PHP <br/>
-						<em>Web ClientSide</em>: Angular.JS, React.JS, SVG, CSS3, HTML5 <br/>
+						<em>Web ClientSide</em>: Angular.JS, React.JS, SVG, Javascript, CSS3, HTML5 <br/>
 					</p>
 
 					<a className="btn btn-ghost" href="#/contact">Stay in touch →</a>
