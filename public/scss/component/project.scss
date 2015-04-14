@@ -26,4 +26,11 @@
 		top: 30px;
 		right: 120px;
 	}
+	a{
+		color: #eee;
+		font-weight: bold;
+		&:hover{
+			color: map-get($color-green,'400');
+		}
+	}
 }

@@ -17,6 +17,13 @@
 			
 		}
 	}
+	.gf-grid{
+		margin-top: 80px;
+		padding-bottom: 50px;
+	}
+}
+#gf-portfolio-header{
+	padding: 40px 120px 20px 200px;
 }
 #gf-portfolio-item{
 	width:0;
@@ -39,6 +46,9 @@
 		top: 30px;
 		right: 120px;
 	}
+	.gf-portfolio-item-wrap{
+		background-color: #efefef;
+	}
 	header{
 		background-size: cover;
 		background-repeat: no-repeat;
@@ -48,7 +58,7 @@
 		padding:0;
 	}
 	.portfolio-content{
-		background-color: #fff;
+		background-color: #efefef;
 		color: #666;
 		font-size: 20px;
 		h1{font-size:2.5em;}

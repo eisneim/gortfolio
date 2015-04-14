@@ -108,6 +108,9 @@ var Portfolio = React.createClass({
 
 		return (
 			<section className={sectionClasses} id="gf-portfolio">
+				<div id="gf-portfolio-header">
+					<a className="btn btn-ghost pull-right" href="#/project">My projects →</a>
+				</div>
 				<Grid items={items} gridData={this.state.gridData}  selected={selected}/>
 				<div id="gf-portfolio-item" className={itemWraperClass}>
 					<RouteHandler {...this.props} item={this.state.items[selected]}/>

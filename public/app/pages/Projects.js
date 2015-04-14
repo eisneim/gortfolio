@@ -66,7 +66,7 @@ var Projects = React.createClass({
 	_initDrag: function(){
 		var that = this;
 		this.dd = new Dragdealer('gf-projects-drag', {
-			steps: 4,
+			steps: this.props.preload.length,
 			speed: 0.3,
 			loose: true,
 			requestAnimationFrame: true,
@@ -159,7 +159,7 @@ var Projects = React.createClass({
 		// recalculate for dragdealer
 		setTimeout(function(){
 			self.dd.reflow();
-		},520);
+		},100);
 
 		if( this.getParams().projectUrl ){
 			this.getDOMNode().classList.add('gf-leave')
@@ -209,7 +209,7 @@ var Projects = React.createClass({
 				<div data-index={index} key={'project'+index} className="gf-project-holder" style={projectStyle}>
 					<div className="gf-project-info">
 						<h1><a href={ '#/project/'+pp.url }>{pp.name}</a></h1>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum sapiente ducimus veritatis dolorem, id tenetur dolores ex natus quis nihil laboriosam ut earum, provident atque, esse possimus? Laborum, nostrum, consequatur.</p>
+						<p>{pp.description}</p>
 					</div>
 					<div className="gf-project-title">
 						<h1>{pp.name}</h1>
@@ -218,9 +218,10 @@ var Projects = React.createClass({
 				</div>
 			)
 		});
+		var classese = 'gf-view '+( activePorject ? 'gf-leave':'');
 
 		return (
-			<section className='gf-view' id="gf-projects">
+			<section className={classese} id="gf-projects">
 				<a id="gf-projects-switch" onClick={this.onToggleView}></a>
 				<div id="gf-projects-drag-wrap">
 					<div id="gf-projects-drag" className="dragdealer">
