@@ -23,7 +23,7 @@ var Contact = React.createClass({
 			})
 		}
 
-		request.post('http://eisneim.com/message')
+		request.post('/message')
 			.set('Content-Type', 'application/json')
 			.send(formData)
 			.end(function(req,res){
@@ -48,7 +48,15 @@ var Contact = React.createClass({
 		return (
 			<section className="gf-view flex-conainer flex-row" id="gf-contact">
 				<div className="social-link">
-
+					
+					<div className="links">
+						<a className="link-icon icon-github" target="_blank" href="https://github.com/eisneim"></a>
+						<a className="link-icon icon-sc" target="_blank" href="https://soundcloud.com/eisneim"></a>
+						<a className="link-icon icon-be" target="_blank" href="https://www.behance.net/eisneim1c2ed"></a>
+						<a className="link-icon icon-fb" target="_blank" href="https://www.facebook.com/eisneim"></a>
+						<a className="link-icon icon-weibo" target="_blank" href="http://weibo.com/eisneim"></a>
+						<a className="link-icon icon-zhihu" target="_blank" href="http://www.zhihu.com/people/eisneim"></a>
+					</div>
 				</div>
 				<div className="flex contact-form" >
 					<div className="formNotify">
