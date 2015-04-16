@@ -11,4 +11,8 @@ module.exports = {
         TOGGLE: null
     }),
 
+    projects: keyMirror({
+        TOGGLEGUIDE: null
+    }),
+
 }

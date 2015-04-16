@@ -6,12 +6,17 @@ var routes = require('./routes.js');
 var navActions = require('./actions/navActions.js');
 var routeCoverActions = require('./actions/routeCoverActions.js');
 var request = require('superagent');
+
 /**
  *  first run don't have anything rendered on page, so it is special,
  *  we can do some initial load animation
  */
 var isFirstRun = true;
 
+/**
+ * !!! bad hacky way here!!!, backend is not done  yet ,so i'll just put some shared data here
+ */
+var sharedData = {};
 /**
  * some routes have mananl leaving animation, below are some top level routes
  * that need auto add leaving anition;
@@ -70,15 +75,15 @@ Router.run(routes,function(Handler,state) {
     var $view = document.querySelector('.gf-view');
  		if($view) $view.classList.add('fade-out');
  		setTimeout(function(){
- 			React.render(<Handler {...state}/>, document.body );
+ 			React.render(<Handler {...state} sharedData={sharedData}/>, document.body );
  		},300);
   }else if( loadUrl[routeName] ){ 
     request.get( loadUrl[routeName] ).end(function(req,res){
-      React.render(<Handler {...state} preload={res.body}/>, document.body );
+      React.render(<Handler {...state} preload={res.body} sharedData={sharedData}/>, document.body );
     });
  	}else{
 
- 		React.render(<Handler {...state}/>, document.body );
+ 		React.render(<Handler {...state} sharedData={sharedData}/>, document.body );
  	}
   /**
    * record previus route so we can have more controll;
@@ -98,7 +103,7 @@ function longLoadInterceptor(routeName , callback){
 
 function renderLongLoadRoute(Handler,state, preloadedData){
   if( xhrLoadDone && routeAnimationDone) {
-    React.render(<Handler {...state} preload={preloadedData }/>, document.body );
+    React.render(<Handler {...state} preload={preloadedData } sharedData={sharedData}/>, document.body );
     // hide animation;
     routeCoverActions.finish();
     // for next route cahgne

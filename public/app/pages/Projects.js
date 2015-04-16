@@ -6,6 +6,9 @@ var Dragdealer = require('dragdealer').Dragdealer;
 var navActions = require('../actions/navActions.js');
 var request = require('superagent');
 
+var projectsStore = require('../stores/projectsStore.js');
+var projectsActions = require('../actions/projectsActions.js');
+
 var projects = null;
 
 var Projects = React.createClass({
@@ -30,10 +33,15 @@ var Projects = React.createClass({
 			// }
 		},
 	},
+	_onChange: function() {
+    	console.log('handle change and setState')
+    	this.setState( projectsStore.getState() );
+	 },
 	getInitialState:function(){
 		return {
 			// showAll: false,
 			projects: this.props.preload,
+			showGuide: projectsStore.getState().showGuide ,
 			ui:{
 				showAll:false,
 				currentSlide: 0,
@@ -42,6 +50,8 @@ var Projects = React.createClass({
 		}
 	},
 	componentDidMount:function(){
+		projectsStore.addChangeListener( this._onChange );
+
 
 		this.ui = {
 			showAll:false,
@@ -223,6 +233,17 @@ var Projects = React.createClass({
 		return (
 			<section className={classese} id="gf-projects">
 				<a id="gf-projects-switch" onClick={this.onToggleView}></a>
+				
+				<div id="guide-overlay" className={'overlay '+(this.state.showGuide?'':'hide')}>
+					<div className="info">
+						<h2>Interactions</h2>
+						<span className="info-drag">Drag Sliders</span>
+						<span className="info-keys">Use Arrows</span>
+						<span className="info-switch">Switch view</span><br/><br/>
+						<button className="btn btn-ghost btn-lg" onClick={projectsActions.toggleGuide}>Got it!</button>
+					</div>
+				</div>
+
 				<div id="gf-projects-drag-wrap">
 					<div id="gf-projects-drag" className="dragdealer">
 						<div id="gf-projects-wraper" className="handle" style={{'width': (projects.length*100)+'%','transformStyle': 'preserve-3d' }}>
