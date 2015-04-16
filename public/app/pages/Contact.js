@@ -93,7 +93,7 @@ var Contact = React.createClass({
 						<button className="btn btn-ghost pull-right btn-lg">Say Hi <span style={{color:"#F0696C"}}>☺</span></button>
 					</form>
 					<br/><br/><br/><br/>
-					<p>Shot me an Email here  ✉  <em>eisneim1[at]sina.com </em></p>
+					<p>Shot me an Email here  ✉  <em>eisneim1@sina.com </em></p>
 				</div>
 			</section>
 		)

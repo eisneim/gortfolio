@@ -2,6 +2,10 @@
 	width:100%;
 	height: 100%;
 	overflow-y:auto;
+	em{
+		color: map-get($color-blue-grey,'400');
+		font-weight: bold;
+	}
 	.social-link{
 		width: 40%;
 		height: 100%;

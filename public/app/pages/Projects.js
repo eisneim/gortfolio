@@ -34,7 +34,6 @@ var Projects = React.createClass({
 		},
 	},
 	_onChange: function() {
-    	console.log('handle change and setState')
     	this.setState( projectsStore.getState() );
 	 },
 	getInitialState:function(){
@@ -218,7 +217,7 @@ var Projects = React.createClass({
 			projectElms.push( 
 				<div data-index={index} key={'project'+index} className="gf-project-holder" style={projectStyle}>
 					<div className="gf-project-info">
-						<h1><a href={ '#/project/'+pp.url }>{pp.name}</a></h1>
+						<h1><a href={ '#/project/'+pp.url }>{pp.name} ↓</a></h1>
 						<p>{pp.description}</p>
 					</div>
 					<div className="gf-project-title">

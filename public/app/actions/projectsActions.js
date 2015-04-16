@@ -6,7 +6,6 @@ var projectsActions = {
 
   // Receive inital product data
   toggleGuide: function( data ) {
-  	console.log('----ge event--');
     AppDispatcher.handleAction({
       actionType: projectsConst.TOGGLEGUIDE,
       data: data
