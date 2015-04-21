@@ -25,6 +25,7 @@ var Contact = React.createClass({
 
 		request.post('/message')
 			.set('Content-Type', 'application/json')
+			.withCredentials()
 			.send(formData)
 			.end(function(req,res){
 				console.log(res.status)
