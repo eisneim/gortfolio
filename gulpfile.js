@@ -5,6 +5,9 @@ var gulp = require('gulp'),
 	uglify = require('gulp-uglify'),
 	livereload = require('gulp-livereload');
 
+// es6 related things
+// var babel = require('gulp-babel');
+
 // for sass compile and live reload:
 var sass = require('gulp-sass'),
     autoprefix = require('gulp-autoprefixer'),
@@ -30,11 +33,14 @@ gulp.task('scss', function() {
 // ---------------------------------------
 gulp.task('browserify',function(){
 	gulp.src('./public/app/index.js')
+	// .pipe( babel({
+	// 	// optional: ["runtime"],
+	// }) )
 	.pipe(browserify({
-		transform: 'reactify'
+		transform: ['babelify'] // 'babelify' reactify
 	}))
+	.on( "error", handleError)
 	.pipe(gulp.dest('./public/build/'))
-	.on( "error", handleError);
 })
 
 gulp.task('build-js',function(){

@@ -8,22 +8,22 @@ var Item = React.createClass({
 	mixins: [Router.State],
 	statics:{
 		// scen enter animation
-		willTransitionTo: function (transition, params) {
+		willTransitionTo: (transition, params) => {
 
 		},
 		// leave animation
-		willTransitionFrom: function(transition, component ){
+		willTransitionFrom: (transition, component )=>{
 			
 		},
 	},
-	getInitialState:function(){
+	getInitialState:()=>{
 		return {
 			item: this.props.item,
 		}
 	},
-	componentWillMount:function(){
+	componentWillMount:()=>{
 	},
-	componentDidMount:function(){
+	componentDidMount:()=>{
 		var self = this;
 
 		request.get('data/portfolio/'+self.props.item.url+'.html')
@@ -36,14 +36,7 @@ var Item = React.createClass({
 		})
 
 	},
-	componentWillUnmount:function(){
-		
-	},
-	leaveScene:function(){
-		// this.elm.dragwraper.style.transform = 'translateX(-'+( that.ui.currentSlide /that.elm.slides.length * 100)+'%)';
-		// this.getDOMNode().classList.add('gf-leave');
-	},
-	render: function(){
+	render: ()=>{
 		var item = this.state.item || {};
 		var headerStyle = {
 			backgroundImage: 'url('+item.cover+')',
@@ -52,7 +45,7 @@ var Item = React.createClass({
 		}
 
 		return (
-			<div className="clearfix" className="gf-portfolio-item-wrap">
+			<div className="gf-portfolio-item-wrap clearfix">
 				<header style={headerStyle}></header>
 				<div role="main" className="portfolio-content clearfix container">
 					<div dangerouslySetInnerHTML={{__html: item.content }} ></div>
