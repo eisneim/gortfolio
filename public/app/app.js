@@ -1,7 +1,5 @@
-var Router = require('react-router');
-var RouteHandler = Router.RouteHandler;
+var { Link, RouteHandler } = require('react-router');
 var RouteCover = require('./components/RouteCover.js');
-var Link = Router.Link;
 
 var React = require('react');
 var PropTypes = React.PropTypes;

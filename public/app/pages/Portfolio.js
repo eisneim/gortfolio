@@ -2,7 +2,7 @@ var React = require('react');
 var Grid = require('../components/Grid.js');
 var Router = require('react-router');
 var RouteHandler = Router.RouteHandler;
-var gridSvc = require('../service/gridSvc.js');
+var gridSvc = require('../service/gridSvc6.js');
 var _ = require('lodash');
 var request = require('superagent');
 /**
