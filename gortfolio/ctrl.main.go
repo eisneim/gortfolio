@@ -1,4 +1,4 @@
-package controllers
+package gortfolio
 
 import (
 	// "encoding/json"
@@ -44,6 +44,7 @@ var (
 // }
 
 func init() {
+
 	SessionDB, err := mgo.Dial("localhost")
 	if err != nil {
 		panic(err)

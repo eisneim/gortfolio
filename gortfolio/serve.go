@@ -45,7 +45,6 @@ func LoggingMiddleware(h http.Handler) http.Handler {
 }
 
 func Serve(port int, dir string) {
-
 	// Router.Handle("/", http.RedirectHandler("/static/", 302))
 	// Router.GET("/", renderIndex)
 
