@@ -8,20 +8,18 @@ import (
 	// "net/http"
 )
 
-type Project struct {
+type Sys struct {
 	Id          bson.ObjectId   `bson:"_id,omitempty"`
 	Author      bson.ObjectId   `bson:"author"`
-	MediaIDs    []bson.ObjectId `bson:"medias"`
+	Medias      []bson.ObjectId `bson:"medias"`
 	Name        string          `bson:"name"`
-	Cover       bson.ObjectId   `bson:"cover"`
-	Description string          `bson:"description"`
-	ViewCount   int             `bson:"viewed"`
-	VoteCount   int             `bson:"voted"`
-	Cards       []projectCard   `bson:"cards"`
-	Detail      string          `bson:"detail"`
+	Description string          `bson:"Description"`
+	Viewed      int             `bson:"viewed"`
+	Voted       int             `bson:"voted"`
+	Cards       []SysCard       `bson:"cards"`
 }
 
-type projectCard struct {
+type SysCard struct {
 	Media       bson.ObjectId `bson:"media"`
 	Type        string        `bson:"type"` // image, audio, video
 	Src         string        `bson:"src"`

@@ -4,7 +4,7 @@
  *
  * the goal is to create an awesome & easy to use portfolio CMS for
  * Designers / Artists / Developers
- * using: golang as backend , angularJS as frontend MV* framework , mongodb as database
+ * using: golang as backend , React.JS as frontend MV* framework , mongodb as database
  *
  * Copyright (c) 2015 eisneim.com
  * License: MIT
