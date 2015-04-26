@@ -15,9 +15,9 @@ const (
 func init() {
 
 	// ----------- user apis -----------
-	Router.GET("/v1/login", controllers.UserLogin)
+	Router.GET("/v1/login", UserLogin)
 
-	Router.GET("/test", controllers.Test)
+	Router.GET("/test", Test)
 
 	Router.GET("/middleware", func(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 		w.Header().Set("X-We-Modified-This", "Yup")
@@ -26,7 +26,7 @@ func init() {
 		handler(w, r, p)
 	})
 
-	Router.GET("/insert", controllers.NewUser)
+	Router.GET("/insert", NewUser)
 	// ----------- portfolio api -------
 
 }
