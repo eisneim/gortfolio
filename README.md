@@ -13,7 +13,7 @@ Gortfolio
 
 
 ##under development.......
-DEMO:[eisneim.com](http://eisneim.com)
+DEMO:[http://glexe.com](http://eisneim.github.io/gortfolio/)
 
 ![img](snapshot.png 'preview')
 

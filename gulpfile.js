@@ -46,11 +46,13 @@ gulp.task('browserify',function(){
 gulp.task('build-js',function(){
 	gulp.src('./public/app/index.js')
 	.pipe(browserify({
-		transform: 'reactify'
+		transform: 'reactify',
+		insertGlobals : true,
+    debug : false,
 	}))
 	.pipe(uglify({
 		compress:true,
-        mangle:true,
+    mangle:true,
 	}))
 	.pipe(gulp.dest('./public/build/'));
 })
