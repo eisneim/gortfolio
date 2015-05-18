@@ -1,4 +1,4 @@
-package gortfolio
+package models
 
 import (
 	// "encoding/json"
