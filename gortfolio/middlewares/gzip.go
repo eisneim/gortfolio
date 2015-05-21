@@ -18,11 +18,11 @@ type CloseableResponseWriter interface {
 
 // ----------------------------------------
 type gzipResponseWriter struct {
-	ResponseWriter http.ResponseWriter
-	Writer         *gzip.Writer
+	http.ResponseWriter
+	*gzip.Writer
 }
 
-func (this gizpResponseWriter) Write(date []byte) (int, error) {
+func (this gzipResponseWriter) Write(data []byte) (int, error) {
 	return this.Writer.Write(data)
 }
 
@@ -30,10 +30,11 @@ func (this gzipResponseWriter) Close() {
 	this.Writer.Close()
 }
 
-func (this gizpResponseWriter) Header() http.Header {
+func (this gzipResponseWriter) Header() http.Header {
 	return this.ResponseWriter.Header()
 }
 
+// ----------------------------------------
 type closeableResponseWriter struct {
 	http.ResponseWriter
 }
