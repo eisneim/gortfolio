@@ -1,4 +1,4 @@
-package gortfolio
+package config
 
 import (
 	"encoding/json"
@@ -18,13 +18,14 @@ type ConfigStruct struct {
 	GithubClientSecret         string `json:"github_auth_client_secret"`
 	GithubLoginRedirect        string `json:"github_login_redirect"`
 	GithubLoginSuccessRedirect string `json:"github_login_success_redirect"`
+	GoVersion                  string
 }
 
 var Config ConfigStruct
-var goVersion = runtime.Version()
 
-func init() {
-	file, err := os.Open("./appConfig.json")
+func Register() ConfigStruct {
+
+	file, err := os.Open("./app_config.json")
 	if err != nil {
 		log.Fatal("配置文件读取失败:", err.Error())
 	}
@@ -36,4 +37,15 @@ func init() {
 		log.Fatal("配置文件解析失败: ", err.Error())
 	}
 
+	Config.GoVersion = runtime.Version()
+
+	return Config
+}
+
+func GetConfig() ConfigStruct {
+	if Config.GoVersion != "" {
+		return Config
+	} else {
+		return Register()
+	}
 }

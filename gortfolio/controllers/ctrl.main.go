@@ -4,7 +4,6 @@ import (
 	// "encoding/json"
 	// "fmt"
 	"github.com/unrolled/render"
-	"gopkg.in/mgo.v2"
 	// "gopkg.in/mgo.v2/bson"
 	// "github.com/julienschmidt/httprouter"
 	// "log"
@@ -42,19 +41,3 @@ var (
 
 // 	}
 // }
-
-func init() {
-
-	SessionDB, err := mgo.Dial("localhost")
-	if err != nil {
-		panic(err)
-	}
-	// defer SessionDB.Close()
-
-	// Optional. Switch the SessionDB to a monotonic behavior.
-	SessionDB.SetMode(mgo.Monotonic, true)
-
-	DB = SessionDB.DB("gortfolio")
-	ColUser = DB.C("users")
-
-}

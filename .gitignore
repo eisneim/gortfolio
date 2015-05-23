@@ -14,6 +14,8 @@ node_modules
 .bower-*/
 .idea/
 
+app_config.json
+
 public/vendor/
 public/build/
 public/css/*.css

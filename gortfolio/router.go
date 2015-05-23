@@ -6,13 +6,7 @@ import (
 	"net/http"
 )
 
-const (
-	Visitor = iota
-	Authed
-	Admin
-)
-
-func init() {
+func RegisterRoutes() {
 
 	// ----------- user apis -----------
 	Router.GET("/v1/login", UserLogin)
