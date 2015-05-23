@@ -9,7 +9,9 @@ import (
 func RegisterRoutes(r *gin.Engine) {
 
 	r.GET("/", func(c *gin.Context) {
-		c.String(http.StatusOK, "this is our home page")
+		// c.String(http.StatusOK, "this is our home page")
+		c.HTML(http.StatusOK, "index.html", nil)
+
 	})
 
 	r.POST("v1/users", controllers.User_new)
