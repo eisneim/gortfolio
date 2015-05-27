@@ -23,3 +23,8 @@ using:
  - React + Flux + react-router + browserify as front end  architecture 
  - Mongodb as database
  - Gulp as build tool
+
+##TODO
+ - theme system: seperate frontend and backend and make switch to another front end easily;
+ - portfolio management:upload, edit, deldate
+ - improve or ReWrite some slow page or component
