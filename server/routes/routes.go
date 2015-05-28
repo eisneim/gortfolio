@@ -14,19 +14,20 @@ func RegisterRoutes(r *gin.Engine) {
 
 	})
 
-	r.POST("v1/users", controllers.User_new)
+	// --------------------------- user apis ---------------
 
-	r.GET("v1/users/:userId", controllers.User_get)
+	r.POST("/v1/users", controllers.User_new)
 
-	r.PUT("v1/users/:userId", controllers.User_update)
+	r.GET("/v1/users/:userId", controllers.User_get)
 
-	r.DELETE("v1/users/:userId", controllers.User_delete)
+	r.PUT("/v1/users/:userId", controllers.User_update)
 
-	// r.POST("/somePost", posting)
-	// r.PUT("/somePut", putting)
-	// r.DELETE("/someDelete", deleting)
-	// r.PATCH("/somePatch", patching)
-	// r.HEAD("/someHead", head)
-	// r.OPTIONS("/someOptions", options)
+	r.DELETE("/v1/users/:userId", controllers.User_delete)
+
+	// --------------------------- system apis ---------------
+
+	r.GET("/sys/install", controllers.Sys_getInstall)
+
+	r.POST("/sys/install", controllers.Sys_install)
 
 }
