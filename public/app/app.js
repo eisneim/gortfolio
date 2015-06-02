@@ -31,8 +31,8 @@ var App = React.createClass({
 	    	<nav id="gf-nav">
 	    		<ul id="gf-nav-main-link">
 	    			<li><Link to="intro">Intro</Link></li>
-	    			<li><Link to="portfolio">Portfolio</Link></li>
 	    			<li><Link to="projects">Projects</Link></li>
+	    			<li><Link to="portfolio">Portfolio</Link></li>
 	    			<li><Link to="about">About</Link></li>
 	    			<li><a href="http://blog.eisneim.com" target="_blank">Blog</a></li>
 	    			<li><Link to="contact">Contact</Link></li>

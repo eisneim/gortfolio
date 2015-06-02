@@ -18,7 +18,7 @@ var Intro = React.createClass({
 							<Typer words={'Parkour||Freerunning||Web Design||Web Development||Paintting||Motion Graphics'}/>
 						</h3>
 						<p>23yrs old, currently based in Shanghai, China</p>
-						<a className="btn btn-ghost btn-lg" href="#/portfolio"> My Portfolio →</a>
+						<a className="btn btn-ghost btn-lg" href="#/project"> My Projects →</a>
 					</header>
 				</div>
 				<div className="cover-mat"></div>
