@@ -46,12 +46,12 @@ gulp.task('browserify',function(){
 gulp.task('build-js',function(){
 	gulp.src('./public/app/index.js')
 	.pipe(browserify({
-		transform: 'reactify',
+		transform: ['babelify'],
 		insertGlobals : true,
     debug : false,
 	}))
 	.pipe(uglify({
-		compress:true,
+		compress:false,
     mangle:true,
 	}))
 	.pipe(gulp.dest('./public/build/'));

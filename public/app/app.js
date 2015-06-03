@@ -34,7 +34,7 @@ var App = React.createClass({
 	    			<li><Link to="projects">Projects</Link></li>
 	    			<li><Link to="portfolio">Portfolio</Link></li>
 	    			<li><Link to="about">About</Link></li>
-	    			<li><a href="http://blog.eisneim.com" target="_blank">Blog</a></li>
+	    			<li><a href="http://eisneim.github.io/" target="_blank">Blog</a></li>
 	    			<li><Link to="contact">Contact</Link></li>
 	    		</ul>
 	    		<div id="gf-nav-bottom">
