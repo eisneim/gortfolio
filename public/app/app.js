@@ -43,7 +43,7 @@ var App = React.createClass({
 	    				<li><a href="http://weibo.com/eineim" target="_blank">Weibo</a></li>
 	    				<li><a href="http://www.zhihu.com/people/eisneim" target="_blank">知乎</a></li>
 	    			</ul>
-	    			<p>Designed with <span style={{color:"#F0696C"}}>❤</span> by <a href="http://eisneim.com">Eisneim</a>, this site is opensourced on <a href="https://github.com/eisneim/gortfolio" target="_blank">github</a></p>
+	    			<p>Designed with <span style={{color:"#F0696C"}}>❤</span> by <a href="http://glexe.com">Eisneim</a>, this site is opensourced on <a href="https://github.com/eisneim/gortfolio" target="_blank">github</a></p>
 	    		</div>
 	    		<div id="nav-svg-wrap" dangerouslySetInnerHTML={{__html: navSvg }}></div>
 	    	</nav>

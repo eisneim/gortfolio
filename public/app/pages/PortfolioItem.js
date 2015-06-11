@@ -8,22 +8,22 @@ var Item = React.createClass({
 	mixins: [Router.State],
 	statics:{
 		// scen enter animation
-		willTransitionTo: (transition, params) => {
+		willTransitionTo: function(transition, params) {
 
 		},
 		// leave animation
-		willTransitionFrom: (transition, component )=>{
+		willTransitionFrom: function(transition, component ) {
 			
 		},
 	},
-	getInitialState:()=>{
+	getInitialState:function(){
 		return {
 			item: this.props.item,
 		}
 	},
-	componentWillMount:()=>{
+	componentWillMount:function(){
 	},
-	componentDidMount:()=>{
+	componentDidMount:function(){
 		var self = this;
 
 		request.get('data/portfolio/'+self.props.item.url+'.html')
@@ -36,7 +36,7 @@ var Item = React.createClass({
 		})
 
 	},
-	render: ()=>{
+	render: function(){
 		var item = this.state.item || {};
 		var headerStyle = {
 			backgroundImage: 'url('+item.cover+')',

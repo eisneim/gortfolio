@@ -37,7 +37,8 @@ gulp.task('browserify',function(){
 	// 	// optional: ["runtime"],
 	// }) )
 	.pipe(browserify({
-		transform: ['babelify'] // 'babelify' reactify
+		transform: ['babelify'], // 'babelify' reactify
+		insertGlobals : true,
 	}))
 	.on( "error", handleError)
 	.pipe(gulp.dest('./public/build/'))
