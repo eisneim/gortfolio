@@ -12,7 +12,7 @@ Gortfolio
 									
 
 
-##under development.......
+## under development.......
 DEMO:[http://glexe.com](http://eisneim.github.io/gortfolio/)
 
 ![img](snapshot.png 'preview')
@@ -24,7 +24,7 @@ using:
  - Mongodb as database
  - Gulp as build tool
 
-##TODO
+## TODO
  - theme system: seperate frontend and backend and make switch to another front end easily;
  - portfolio management:upload, edit, deldate
  - improve or ReWrite some slow page or component
